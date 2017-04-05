@@ -12,6 +12,7 @@ import Alamofire
 import UnboxedAlamofire
 import OAuthSwift
 import OAuthSwiftAlamofire
+import KeychainSwift
 
 class TwitterAPIService {
     
@@ -26,6 +27,30 @@ class TwitterAPIService {
     //URLS
     private var verifyCredentialURL = "https://api.twitter.com/1.1/account/verify_credentials.json"
     private var getHomeTimelineURL = "https://api.twitter.com/1.1/statuses/home_timeline.json"
+    
+    
+    func byPassLoginScreen(){
+        
+        let oauthswift = OAuth1Swift(
+            consumerKey: twitterConsumerKey,
+            consumerSecret: twitterConsumerSecret,
+            requestTokenUrl: "https://api.twitter.com/oauth/request_token",
+            authorizeUrl: "https://api.twitter.com/oauth/authorize",
+            accessTokenUrl: "https://api.twitter.com/oauth/access_token")
+        
+        self.oauthswift = oauthswift
+        
+        let keychain = KeychainSwift()
+        
+        oauthswift.client.credential.oauthToken = keychain.get("the_token_key")!
+        oauthswift.client.credential.oauthTokenSecret = keychain.get("the_secret_token_key")!
+        
+        
+        isAuthorized = true
+        sessionManager.adapter = OAuthSwiftRequestAdapter(oauthswift)
+        
+    }
+    
     
     func loginToTwitter(completion: @escaping (Bool, Error?) -> ()){
         
@@ -46,6 +71,35 @@ class TwitterAPIService {
                 print("got oauth")
                 self.isAuthorized = true
                 self.sessionManager.adapter = OAuthSwiftRequestAdapter(oauthswift)
+                
+                print(credential)
+                
+                
+                
+                let keychain = KeychainSwift()
+                keychain.set("the_token_key", forKey: credential.oauthToken)
+                keychain.set("the_secret_token_key", forKey: credential.oauthTokenSecret)
+                
+                
+//                let keychain = KeychainPreferences.sharedInstance
+//                // each element
+//                keychain["the_token_key"] = credential.oauthToken
+//                keychain["the_secret_token_key"] = credential.oauthTokenSecret
+                
+                
+                
+                
+                self.getUser() {
+                    (user: User?, error: Error?) in
+                    if let user = user {
+                        print(user)
+                        User.currentUser = user
+                    }else{
+                        print(error!.localizedDescription)
+                    }
+                }
+                
+                
                 completion(true, nil)
         },
             failure: { error in

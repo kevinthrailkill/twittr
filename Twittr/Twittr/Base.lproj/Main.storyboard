@@ -99,7 +99,7 @@
         <!--Navigation Controller-->
         <scene sceneID="7Fg-VW-oIh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u67-PT-ojy" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="u67-PT-ojy" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oSr-eF-Og9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

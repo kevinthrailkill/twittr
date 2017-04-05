@@ -21,14 +21,7 @@ class TweetsViewController: UIViewController {
         super.viewDidLoad()
         
         
-        twitterAPIService.getUser() {
-            (user: User?, error: Error?) in
-            if let user = user {
-                print(user)
-            }else{
-                print(error!.localizedDescription)
-            }
-        }
+        
         
         twitterAPIService.getHomeTimeline() {
             (tweets: [Tweet]?, error: Error?) in

@@ -17,17 +17,19 @@ class Tweet: Unboxable {
     var retweetCount: Int?
     var favoriteCount: Int?
     
+    
+    init() {
+        
+    }
 
     required init(unboxer: Unboxer) throws {
         self.text = unboxer.unbox(key: "text")
         self.retweetCount = unboxer.unbox(key: "retweet_count") ?? 0
         self.favoriteCount = unboxer.unbox(key: "favourites_count") ?? 0
         
-        let timeStampString : String? = unboxer.unbox(key: "created_at")
-        if let dateString = timeStampString {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-            self.timeStamp = formatter.date(from: dateString)
-        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+        self.timeStamp = unboxer.unbox(key: "created_at", formatter: formatter)
+        
     }
 }
