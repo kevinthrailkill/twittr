@@ -1,0 +1,15 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Twittr' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Twittr
+  pod 'Alamofire'
+  pod 'UnboxedAlamofire'
+  pod 'Unbox'
+  pod 'AFNetworking'
+  pod 'OAuthSwift'
+  pod 'OAuthSwiftAlamofire'
+end

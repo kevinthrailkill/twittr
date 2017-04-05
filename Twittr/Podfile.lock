@@ -1,0 +1,45 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - Alamofire (4.4.0)
+  - OAuthSwift (1.1.1)
+  - OAuthSwiftAlamofire (0.1.0):
+    - Alamofire
+    - OAuthSwift
+  - Unbox (2.4.0)
+  - UnboxedAlamofire (2.0.3):
+    - Alamofire (~> 4.1)
+    - Unbox (~> 2.0)
+
+DEPENDENCIES:
+  - AFNetworking
+  - Alamofire
+  - OAuthSwift
+  - OAuthSwiftAlamofire
+  - Unbox
+  - UnboxedAlamofire
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  OAuthSwift: 6e3a103b3e5639411769cc7e199ec7e14bd1547f
+  OAuthSwiftAlamofire: 20bb998ac506f82c3bab0625fbc98a9c6fca783f
+  Unbox: c8b2ab69d3337597b4a3f47a0538807dc12db670
+  UnboxedAlamofire: 3ecaf2a745aa018ba3497c0d61487b7338190ac6
+
+PODFILE CHECKSUM: 32a827dd236c7ccd82161dea8502d269c9283d0d
+
+COCOAPODS: 1.2.0
