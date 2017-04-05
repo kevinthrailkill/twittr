@@ -16,13 +16,18 @@ import OAuthSwiftAlamofire
 class TwitterAPIService {
     
     
+    //OAuth Info
     private let twitterConsumerKey = "NNBzsZMcVoSHNQOIoSvua72U2"
     private let twitterConsumerSecret = "v9G6EZiqAYxkiGSfRtx76KqHhFCw2zcwte1747qM1jqJUe1tHZ"
     private let sessionManager = SessionManager.default
     private var oauthswift: OAuth1Swift?
+    var isAuthorized : Bool = false
     
-    func authorizeTwitter(){
-        //Set up the OAuth with the Yelp keys
+    //URLS
+    private var verifyCredentialURL = "https://api.twitter.com/1.1/account/verify_credentials.json"
+    private var getHomeTimelineURL = "https://api.twitter.com/1.1/statuses/home_timeline.json"
+    
+    func loginToTwitter(completion: @escaping (Bool, Error?) -> ()){
         
         let oauthswift = OAuth1Swift(
             consumerKey: twitterConsumerKey,
@@ -38,32 +43,47 @@ class TwitterAPIService {
         let _ = oauthswift.authorize(
             withCallbackURL: URL(string: "http://oauthswift.herokuapp.com/callback/twitter")!,
             success: { credential, response, parameters in
-                // self.showTokenAlert(name: serviceParameters["name"], credential: credential)
-                //  self.testTwitter(oauthswift)
                 print("got oauth")
-                
-                
-                let _ = oauthswift.client.get(
-                    "https://api.twitter.com/1.1/statuses/mentions_timeline.json", parameters: [:],
-                    success: { response in
-                        let jsonDict = try? response.jsonObject()
-                        print(jsonDict as Any)
-                }, failure: { error in
-                    print(error)
-                }
-                )
-
-                
-                
+                self.isAuthorized = true
+                self.sessionManager.adapter = OAuthSwiftRequestAdapter(oauthswift)
+                completion(true, nil)
         },
             failure: { error in
                 print("oauth error")
                 print(error.description)
+                self.isAuthorized = false
+                completion(self.isAuthorized, error)
+                
         })
-        
-        sessionManager.adapter = OAuthSwiftRequestAdapter(oauthswift)
     }
     
     
+    func getUser(completion: @escaping (User?, Error?) -> ()){
+        sessionManager.request(verifyCredentialURL, method: .get)
+            .responseObject { (response: DataResponse<User>) in
+                switch response.result {
+                case .success(let value):
+                    let user = value
+                    completion(user, nil)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion(nil, error)
+                }
+        }
+    }
+    
+    func getHomeTimeline(completion: @escaping ([Tweet]?, Error?) -> ()){
+        sessionManager.request(getHomeTimelineURL, method: .get)
+            .responseArray { (response: DataResponse<[Tweet]>) in
+                switch response.result {
+                case .success(let value):
+                    let tweets = value
+                    completion(tweets, nil)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion(nil, error)
+                }
+        }
+    }
     
 }
