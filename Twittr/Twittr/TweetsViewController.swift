@@ -37,6 +37,19 @@ class TweetsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    deinit {
+        print("Tweets view gone")
+        twitterAPIService = nil
+    }
+    
+    @IBAction func onLogoutButton(_ sender: UIBarButtonItem) {
+        
+        twitterAPIService.logout()
+        
+        
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

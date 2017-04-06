@@ -51,6 +51,16 @@ class TwitterAPIService {
         
     }
     
+    func logout() {
+        User.currentUser = nil
+        let keychain = KeychainSwift()
+        keychain.delete("the_token_key")
+        keychain.delete("the_secret_token_key")
+        
+        NotificationCenter.default.post(name: NSNotification.Name("UserDidLogout"), object: nil)
+
+    }
+    
     
     func loginToTwitter(completion: @escaping (Bool, Error?) -> ()){
         
@@ -74,20 +84,10 @@ class TwitterAPIService {
                 
                 print(credential)
                 
-                
-                
                 let keychain = KeychainSwift()
-                keychain.set("the_token_key", forKey: credential.oauthToken)
-                keychain.set("the_secret_token_key", forKey: credential.oauthTokenSecret)
                 
-                
-//                let keychain = KeychainPreferences.sharedInstance
-//                // each element
-//                keychain["the_token_key"] = credential.oauthToken
-//                keychain["the_secret_token_key"] = credential.oauthTokenSecret
-                
-                
-                
+                keychain.set(credential.oauthToken, forKey: "the_token_key")
+                keychain.set(credential.oauthTokenSecret, forKey: "the_secret_token_key")
                 
                 self.getUser() {
                     (user: User?, error: Error?) in

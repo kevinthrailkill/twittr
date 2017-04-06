@@ -21,8 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        // User.currentUser = nil
                 
         
-        if let user = User.currentUser {
-            print(user)
+        if User.currentUser != nil {
             print("there us a user")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
@@ -37,8 +36,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             window?.rootViewController = tweetsNavController
             
+            
         }else{
             print("there is not a user")
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("UserDidLogout"), object: nil, queue: OperationQueue.main) { (NSNotification) ->
+            Void in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginVC = storyboard.instantiateInitialViewController()
+            self.window?.rootViewController = loginVC
+            
         }
         
         
@@ -73,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
     }
 
 

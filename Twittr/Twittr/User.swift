@@ -29,7 +29,7 @@ class User : Unboxable {
                 let userData = defaults.object(forKey: "currentUserData") as? Data
                 
                 if let userData = userData {
-          
+                    
                     let dictionary = try! JSONSerialization.jsonObject(with: userData, options: [])
                     
                     _currentUser = User(dictionary: dictionary as! UnboxableDictionary)
@@ -49,7 +49,7 @@ class User : Unboxable {
                 
                 defaults.set(data, forKey: "currentUserData")
             }else{
-                defaults.set(nil, forKey: "currentUserData")
+                defaults.removeObject(forKey: "currentUserData")
             }
             defaults.synchronize()
 
