@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OAuthSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+       // User.currentUser = nil
+                
+        
+        if User.currentUser != nil {
+            print("there us a user")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let tweetsNavController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
+            
+            let twitterApiService = TwitterAPIService()
+            twitterApiService.byPassLoginScreen()
+            
+            let tweetsViewController = tweetsNavController.viewControllers[0] as! TweetsViewController
+            
+            tweetsViewController.twitterAPIService = twitterApiService
+            
+            window?.rootViewController = tweetsNavController
+            
+            
+        }else{
+            print("there is not a user")
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("UserDidLogout"), object: nil, queue: OperationQueue.main) { (NSNotification) ->
+            Void in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginVC = storyboard.instantiateInitialViewController()
+            self.window?.rootViewController = loginVC
+            
+        }
+        
+        
+        return true
+    }
+    
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if (url.host == "oauth-callback") {
+            OAuthSwift.handle(url: url)
+        }
         return true
     }
 
@@ -39,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
     }
 
 
