@@ -76,7 +76,8 @@ class User : Unboxable {
         
         let profileUrlString : String?  = unboxer.unbox(key: "profile_image_url_https")
         if let urlstring = profileUrlString {
-            self.profileURL = URL(string: urlstring)
+            self.profileURL = URL(string: urlstring.replacingOccurrences(of: "normal.jpg", with: "bigger.jpg"))
+            
         }
     }
 }

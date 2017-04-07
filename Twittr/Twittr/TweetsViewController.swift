@@ -15,12 +15,19 @@ class TweetsViewController: UIViewController {
     
     var twitterAPIService : TwitterAPIService!
     var tweetsArray: [Tweet] = []
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+        //load xib file
+        let nib = UINib(nibName: "TweetCell", bundle: nil)
+        tweetsTableView.register(nib, forCellReuseIdentifier: "TweetCell")
+        
+        tweetsTableView.rowHeight = UITableViewAutomaticDimension
+        tweetsTableView.estimatedRowHeight = 90
         
         
         twitterAPIService.getHomeTimeline() {
@@ -77,16 +84,30 @@ extension TweetsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) 
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         let tweet = tweetsArray[indexPath.row]
-        
-        cell.textLabel?.text = tweet.text
-        
-        
+        cell.tweet = tweet
+        cell.delegate = self
+        cell.indexPath = indexPath
         return cell
     }
     
+}
+
+extension TweetsViewController : TweetCellDelegate {
     
-    
+    func reload(tweetCell: TweetCell, at indexPath: IndexPath ) {
+        
+        
+//        if reloadedIndexPaths.index(of: indexPath.row) != nil {
+//            return
+//        }
+//        
+//        reloadedIndexPaths.append(indexPath.row)
+//        
+//        tweetsTableView.reloadRows(at: [indexPath], with: .automatic)
+        
+        
+    }
 }
