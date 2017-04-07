@@ -22,31 +22,24 @@ class Tweet: Unboxable {
     var tweetOwner: User?
     var entities: Entities?
     var retweetedStatus: Tweet?
+    var currentUserRetweet: CurrentUserRetweet?
 
     
     var favorited: Bool {
         didSet {
             if favorited {
-                favoriteCount -= 1
-             //   TwitterClient.sharedInstance.favorite(["id": TweetID], favorite: true)
-            } else {
                 favoriteCount += 1
-             //   TwitterClient.sharedInstance.favorite(["id": TweetID], favorite: false)
+            } else {
+                favoriteCount -= 1
             }
         }
     }
     var retweeted: Bool {
         didSet {
             if retweeted {
-                retweetCount -= 1
-             //   TwitterClient.sharedInstance.retweet(["id": TweetID], retweet: true) { (tweet, error) in
-              //      print("retweeted")
-            
-            } else {
                 retweetCount += 1
-             //   TwitterClient.sharedInstance.retweet(["id": TweetID], retweet: false) { (tweet, error) in
-              //      print("unretweeted")
-              //  }
+            } else {
+                retweetCount -= 1
             }
         }
     }
@@ -70,6 +63,7 @@ class Tweet: Unboxable {
         self.entities = unboxer.unbox(key: "entities")
         
         self.retweetedStatus = unboxer.unbox(key: "retweeted_status")
+        self.currentUserRetweet = unboxer.unbox(key: "current_user_retweet")
         
     }
 }
@@ -116,4 +110,15 @@ class TweetURLType : Unboxable {
         self.displayUrl = unboxer.unbox(key: "display_url")
 
     }
+}
+
+class CurrentUserRetweet : Unboxable {
+    var id: UInt64?
+    var id_str : String?
+    
+    required init(unboxer: Unboxer) throws {
+        self.id = unboxer.unbox(key: "id")
+        self.id_str = unboxer.unbox(key: "id_str")
+    }
+    
 }
