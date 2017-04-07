@@ -26,7 +26,7 @@
                         </constraints>
                     </imageView>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bassnectar Retweeted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQW-Mp-gT0">
-                        <rect key="frame" x="66" y="6" width="102" height="12"/>
+                        <rect key="frame" x="66" y="6" width="101.5" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="Gjb-jv-Er9"/>
                         </constraints>
@@ -42,144 +42,159 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sm-cl-KXD">
-                        <rect key="frame" x="66" y="18" width="34" height="16"/>
+                        <rect key="frame" x="66" y="18" width="34" height="15.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDb-R6-czs">
-                        <rect key="frame" x="66" y="38" width="246" height="14"/>
+                        <rect key="frame" x="66" y="37.5" width="246" height="14"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7az-io-5S2" customClass="FaveButton" customModule="FaveButton">
-                        <rect key="frame" x="66" y="60" width="14" height="14"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="14" id="0Tx-b5-f0K"/>
-                            <constraint firstAttribute="height" constant="14" id="QYD-eb-prb"/>
-                        </constraints>
-                        <state key="normal" image="reply"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
-                                <color key="value" red="0.0" green="0.26274509800000001" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                        <connections>
-                            <action selector="faveButtonPressed:" destination="KGk-i7-Jjw" eventType="touchDragInside" id="ofg-qe-lLf"/>
-                            <outlet property="delegate" destination="-1" id="wHO-7d-6aC"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIN-bu-8I1">
-                        <rect key="frame" x="126" y="61" width="34" height="14"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                        <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvr-CL-Axl" customClass="FaveButton" customModule="FaveButton">
-                        <rect key="frame" x="108" y="61" width="14" height="14"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="14" id="3i4-TX-Gww"/>
-                            <constraint firstAttribute="height" constant="14" id="msW-at-WPw"/>
-                        </constraints>
-                        <state key="normal" image="retweet"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
-                                <color key="value" red="0.23137254901960785" green="0.71764705882352942" blue="0.36470588235294116" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="dotFirstColor">
-                                <color key="value" red="0.28235294119999998" green="0.80784313730000001" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="dotSecondColor">
-                                <color key="value" red="0.36078431370000003" green="0.61960784310000006" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="circleFromColor">
-                                <color key="value" red="0.36078431370000003" green="0.61960784310000006" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="circleToColor">
-                                <color key="value" red="0.28235294119999998" green="0.80784313730000001" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                        <connections>
-                            <action selector="faveButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hQx-Pf-IK0"/>
-                            <outlet property="delegate" destination="-1" id="eHe-Yr-jOT"/>
-                        </connections>
-                    </button>
+                    <stackView opaque="NO" tag="1" contentMode="scaleToFill" distribution="fillProportionally" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="ikB-Re-qNX">
+                        <rect key="frame" x="66" y="62.5" width="191" height="14"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="31x-yS-t0Q">
+                                <rect key="frame" x="0.0" y="0.0" width="14" height="14"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7az-io-5S2" customClass="FaveButton" customModule="FaveButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="14" height="14"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="14" id="0Tx-b5-f0K"/>
+                                            <constraint firstAttribute="height" constant="14" id="QYD-eb-prb"/>
+                                        </constraints>
+                                        <state key="normal" image="reply14"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
+                                                <color key="value" red="0.0" green="0.26274509800000001" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="faveButtonPressed:" destination="KGk-i7-Jjw" eventType="touchDragInside" id="ofg-qe-lLf"/>
+                                            <outlet property="delegate" destination="-1" id="wHO-7d-6aC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.26274509800000001" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YjN-bo-APS">
+                                <rect key="frame" x="55" y="0.0" width="47.5" height="14"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvr-CL-Axl" customClass="FaveButton" customModule="FaveButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="14" height="14"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="14" id="3i4-TX-Gww"/>
+                                            <constraint firstAttribute="height" constant="14" id="msW-at-WPw"/>
+                                        </constraints>
+                                        <state key="normal" image="retweet14"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
+                                                <color key="value" red="0.23137254901960785" green="0.71764705882352942" blue="0.36470588235294116" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="dotFirstColor">
+                                                <color key="value" red="0.28235294119999998" green="0.80784313730000001" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="dotSecondColor">
+                                                <color key="value" red="0.36078431370000003" green="0.61960784310000006" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="circleFromColor">
+                                                <color key="value" red="0.36078431370000003" green="0.61960784310000006" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="circleToColor">
+                                                <color key="value" red="0.28235294119999998" green="0.80784313730000001" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="faveButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hQx-Pf-IK0"/>
+                                            <outlet property="delegate" destination="-1" id="eHe-Yr-jOT"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIN-bu-8I1">
+                                        <rect key="frame" x="14" y="0.0" width="33.5" height="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                        <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.28235294119999998" green="0.80784313730000001" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="efn-9z-dhX">
+                                <rect key="frame" x="143.5" y="0.0" width="47.5" height="14"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXT-ak-cfp" customClass="FaveButton" customModule="FaveButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="14" height="14"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="14" id="7bN-Es-poj"/>
+                                            <constraint firstAttribute="width" constant="14" id="Vhb-04-SNT"/>
+                                        </constraints>
+                                        <state key="normal" image="heart14"/>
+                                        <connections>
+                                            <action selector="faveButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="TeZ-jC-yL9"/>
+                                            <outlet property="delegate" destination="-1" id="QBs-zz-klH"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntf-tO-X0K">
+                                        <rect key="frame" x="14" y="0.0" width="33.5" height="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                        <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <gestureRecognizers/>
+                    </stackView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cP8-R7-209">
-                        <rect key="frame" x="66" y="56" width="238" height="0.0"/>
+                        <rect key="frame" x="66" y="55.5" width="238" height="0.0"/>
                         <constraints>
                             <constraint firstAttribute="height" id="e8a-zD-gCS"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEt-yi-Fcf">
-                        <rect key="frame" x="108" y="19.5" width="30" height="14"/>
+                        <rect key="frame" x="108" y="19" width="29.5" height="14"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12hr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHm-X8-n3k">
-                        <rect key="frame" x="289" y="20.5" width="23" height="13"/>
+                        <rect key="frame" x="289.5" y="20" width="22.5" height="13"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                         <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntf-tO-X0K">
-                        <rect key="frame" x="206" y="61" width="34" height="14"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                        <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXT-ak-cfp" customClass="FaveButton" customModule="FaveButton">
-                        <rect key="frame" x="188" y="61" width="14" height="14"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="14" id="7bN-Es-poj"/>
-                            <constraint firstAttribute="width" constant="14" id="Vhb-04-SNT"/>
-                        </constraints>
-                        <state key="normal" image="heart"/>
-                        <connections>
-                            <action selector="faveButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="TeZ-jC-yL9"/>
-                            <outlet property="delegate" destination="-1" id="QBs-zz-klH"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="DQW-Mp-gT0" firstAttribute="centerY" secondItem="84p-ir-8Eb" secondAttribute="centerY" id="1Ca-Ye-uev"/>
                     <constraint firstItem="9sm-cl-KXD" firstAttribute="top" secondItem="9ii-0J-zYJ" secondAttribute="top" id="1MS-AK-zh1"/>
                     <constraint firstItem="9sm-cl-KXD" firstAttribute="leading" secondItem="9ii-0J-zYJ" secondAttribute="trailing" constant="8" id="2s1-SE-qoc"/>
                     <constraint firstItem="cP8-R7-209" firstAttribute="top" secondItem="wDb-R6-czs" secondAttribute="bottom" constant="4" id="3Ch-Iy-TBR"/>
-                    <constraint firstItem="XXT-ak-cfp" firstAttribute="leading" secondItem="cIN-bu-8I1" secondAttribute="trailing" constant="28" id="46F-n6-Dle"/>
-                    <constraint firstItem="ntf-tO-X0K" firstAttribute="top" secondItem="cP8-R7-209" secondAttribute="bottom" constant="5" id="5No-uY-KR9"/>
-                    <constraint firstItem="cIN-bu-8I1" firstAttribute="top" secondItem="cP8-R7-209" secondAttribute="bottom" constant="5" id="AGg-dm-uqC"/>
                     <constraint firstItem="wDb-R6-czs" firstAttribute="top" secondItem="9sm-cl-KXD" secondAttribute="bottom" constant="4" id="AkM-n7-Wic"/>
                     <constraint firstItem="AHm-X8-n3k" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iEt-yi-Fcf" secondAttribute="trailing" constant="12" id="Aqz-P7-vQ8"/>
-                    <constraint firstItem="7az-io-5S2" firstAttribute="top" secondItem="cP8-R7-209" secondAttribute="bottom" constant="4" id="JF0-8h-TRw"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7az-io-5S2" secondAttribute="bottom" constant="12" id="Nql-Qs-0CF"/>
-                    <constraint firstItem="ntf-tO-X0K" firstAttribute="leading" secondItem="XXT-ak-cfp" secondAttribute="trailing" constant="4" id="QcE-21-n8g"/>
+                    <constraint firstItem="ikB-Re-qNX" firstAttribute="leading" secondItem="9ii-0J-zYJ" secondAttribute="trailing" constant="8" id="CLz-b8-Loy"/>
+                    <constraint firstItem="ikB-Re-qNX" firstAttribute="top" secondItem="cP8-R7-209" secondAttribute="bottom" constant="7" id="FqY-ux-ZVT"/>
+                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="ikB-Re-qNX" secondAttribute="trailing" constant="12" id="JBS-D9-Jx2"/>
                     <constraint firstItem="wDb-R6-czs" firstAttribute="leading" secondItem="9sm-cl-KXD" secondAttribute="leading" id="U88-h0-MAn"/>
-                    <constraint firstItem="7az-io-5S2" firstAttribute="leading" secondItem="cP8-R7-209" secondAttribute="leading" id="Uee-GJ-t9G"/>
                     <constraint firstItem="iEt-yi-Fcf" firstAttribute="leading" secondItem="9sm-cl-KXD" secondAttribute="trailing" constant="8" id="Xeh-pV-zAr"/>
                     <constraint firstItem="AHm-X8-n3k" firstAttribute="baseline" secondItem="iEt-yi-Fcf" secondAttribute="baseline" id="ZbH-O2-Ake"/>
                     <constraint firstItem="84p-ir-8Eb" firstAttribute="height" secondItem="DQW-Mp-gT0" secondAttribute="height" id="awa-Pc-7qq"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kvr-CL-Axl" secondAttribute="bottom" constant="12" id="cXc-cr-Fbc"/>
                     <constraint firstItem="84p-ir-8Eb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="eRK-kG-YRK"/>
                     <constraint firstItem="9sm-cl-KXD" firstAttribute="baseline" secondItem="iEt-yi-Fcf" secondAttribute="baseline" id="ebc-qn-KjI"/>
-                    <constraint firstItem="XXT-ak-cfp" firstAttribute="top" secondItem="cP8-R7-209" secondAttribute="bottom" constant="5" id="fwJ-NB-yKK"/>
                     <constraint firstItem="9ii-0J-zYJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="h63-QD-7uw"/>
                     <constraint firstItem="84p-ir-8Eb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="50" id="jil-2c-15R"/>
                     <constraint firstItem="cP8-R7-209" firstAttribute="leading" secondItem="wDb-R6-czs" secondAttribute="leading" id="jt8-vw-EUx"/>
                     <constraint firstAttribute="trailing" secondItem="AHm-X8-n3k" secondAttribute="trailing" constant="8" id="leA-QN-DdQ"/>
-                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="ntf-tO-X0K" secondAttribute="trailing" constant="12" id="mFf-eG-WJ8"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ikB-Re-qNX" secondAttribute="bottom" constant="12" id="m2V-kC-f1s"/>
                     <constraint firstItem="9ii-0J-zYJ" firstAttribute="top" secondItem="84p-ir-8Eb" secondAttribute="bottom" id="mpH-iU-KB8"/>
-                    <constraint firstItem="kvr-CL-Axl" firstAttribute="leading" secondItem="7az-io-5S2" secondAttribute="trailing" constant="28" id="pJV-wZ-IkI"/>
-                    <constraint firstItem="cIN-bu-8I1" firstAttribute="leading" secondItem="kvr-CL-Axl" secondAttribute="trailing" constant="4" id="pRQ-PW-YBi"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="DQW-Mp-gT0" secondAttribute="trailing" constant="8" id="poZ-M3-Hne"/>
                     <constraint firstAttribute="trailing" secondItem="wDb-R6-czs" secondAttribute="trailing" constant="8" id="rpB-aR-EOJ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="cP8-R7-209" secondAttribute="trailing" constant="8" id="uar-OB-flE"/>
-                    <constraint firstItem="kvr-CL-Axl" firstAttribute="top" secondItem="cP8-R7-209" secondAttribute="bottom" constant="5" id="x2l-c3-54O"/>
                     <constraint firstItem="DQW-Mp-gT0" firstAttribute="leading" secondItem="84p-ir-8Eb" secondAttribute="trailing" constant="4" id="zWd-0d-HLg"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="buttonStackView" destination="ikB-Re-qNX" id="p5q-F5-rs0"/>
                 <outlet property="favoriteCountLabel" destination="ntf-tO-X0K" id="QkK-nA-L3M"/>
                 <outlet property="heartButton" destination="XXT-ak-cfp" id="gJM-Rc-ZHr"/>
                 <outlet property="mediaImageViewHeightContraint" destination="e8a-zD-gCS" id="gi8-2U-92E"/>
@@ -200,8 +215,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="heart" width="24" height="24"/>
-        <image name="reply" width="24" height="24"/>
+        <image name="heart14" width="14" height="14"/>
+        <image name="reply14" width="14" height="14"/>
         <image name="retweet" width="24" height="24"/>
+        <image name="retweet14" width="14" height="14"/>
     </resources>
 </document>
