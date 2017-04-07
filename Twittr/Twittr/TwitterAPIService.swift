@@ -32,6 +32,7 @@ class TwitterAPIService {
     private var favoriteURL = "https://api.twitter.com/1.1/favorites/create.json"
     private var unFavoriteURL = "https://api.twitter.com/1.1/favorites/destroy.json"
     private var statusURL = "https://api.twitter.com/1.1/statuses/show/"
+    private var updateStatusURL = "https://api.twitter.com/1.1/statuses/update.json"
     
     
     func byPassLoginScreen(){
@@ -222,5 +223,25 @@ class TwitterAPIService {
 
         }
         
-    }    
+    }
+    
+    
+    func publish(tweetBody: String, completion: @escaping (Tweet?, Error?) -> ()) {
+        
+        let params = ["status" : tweetBody]
+        
+        sessionManager.request(updateStatusURL, method: .post, parameters: params, encoding: URLEncoding.queryString)
+            .responseObject { (response: DataResponse<Tweet>) in
+                switch response.result {
+                case .success(let value):
+                    let tweet = value
+                    completion(tweet, nil)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion(nil, error)
+                }
+                
+        }
+        
+    }
 }

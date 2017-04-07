@@ -229,9 +229,6 @@ class TweetCell: UITableViewCell, FaveButtonDelegate {
             print("Reply")
             
         }
-        
-        print(sender.isSelected)
-        
     }
     
     let colors = [

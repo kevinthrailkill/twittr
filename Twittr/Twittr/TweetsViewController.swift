@@ -140,16 +140,19 @@ class TweetsViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "NewTweetSegue" {
+            let newTweetNavController = segue.destination
+                as! UINavigationController
+            let newTweetViewController = newTweetNavController.viewControllers[0] as! NewTweetViewController
+            
+            newTweetViewController.twitterAPIService = twitterAPIService
+            newTweetViewController.delegate = self
+        }
     }
-    */
-
 }
 
 
@@ -169,15 +172,11 @@ extension TweetsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        <#code#>
-//    }
-//    
-//    func 
+
     
 }
 
-extension TweetsViewController : TweetCellDelegate {
+extension TweetsViewController : TweetCellDelegate, NewTweetDelegate {
     
     func reload(tweetCell: TweetCell, at indexPath: IndexPath ) {
         
@@ -210,6 +209,11 @@ extension TweetsViewController : TweetCellDelegate {
                 print(error!.localizedDescription)
             }
         }
+    }
+    
+    func addNew(tweet: Tweet) {
+        tweetsArray.insert(tweet, at: 0)
+        tweetsTableView.reloadData()
     }
     
 }

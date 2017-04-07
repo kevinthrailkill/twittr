@@ -18,3 +18,8 @@ protocol TweetCellDelegate: class {
     
     
 }
+
+
+protocol NewTweetDelegate : class {
+    func addNew(tweet: Tweet)
+}
