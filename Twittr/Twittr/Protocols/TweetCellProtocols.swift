@@ -12,7 +12,7 @@ protocol TweetCellDelegate: class {
     
     func reload(tweetCell: TweetCell, at indexPath: IndexPath)
     
-    func favorite(tweetID: UInt64, shouldFavorite: Bool)
+    func favorite(tweetID: String, shouldFavorite: Bool)
     
     func retweet(tweetID: String, shouldRetweet: Bool)
     

@@ -197,9 +197,9 @@ class TwitterAPIService {
         }
     }
     
-    func favorite(tweetID: UInt64, favorite: Bool, completion: @escaping (Tweet?, Error?) -> ()) {
+    func favorite(tweetID: String, favorite: Bool, completion: @escaping (Tweet?, Error?) -> ()) {
         
-        let params = ["id" : tweetID as AnyObject]
+        let params = ["id" : tweetID]
         
         var endpoint : String
         
@@ -209,48 +209,18 @@ class TwitterAPIService {
             endpoint = unFavoriteURL
         }
         
-        sessionManager.request(endpoint, method: .post, parameters: params).responseJSON { response in
-            print(response.request)  // original URL request
-            print(response.response) // HTTP URL response
-            print(response.data)     // server data
-            print(response.result)   // result of response serialization
-            
-            if let JSON = response.result.value {
-                print("JSON: \(JSON)")
-            }
-            
-            //        sessionManager.request(endpoint + tweetID + ".json", method: .post, parameters: params).responseJSON { response in
-            //            print(response.request)  // original URL request
-            //            print(response.response) // HTTP URL response
-            //            print(response.data)     // server data
-            //            print(response.result)   // result of response serialization
-            //
-            //            if let JSON = response.result.value {
-            //                print("JSON: \(JSON)")
-            //            }
-            //            .responseObject { (response: DataResponse<Tweet>) in
-            //                switch response.result {
-            //                case .success(let value):
-            //                    let tweet = value
-            //                    completion(tweet, nil)
-            //                case .failure(let error):
-            //                    print(error.localizedDescription)
-            //                    completion(nil, error)
-            //                }
-            
-//            .responseObject { (response: DataResponse<Tweet>) in
-//                switch response.result {
-//                case .success(let value):
-//                    let tweet = value
-//                    completion(tweet, nil)
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                    completion(nil, error)
-//                }
+        sessionManager.request(endpoint, method: .post, parameters: params, encoding: URLEncoding.queryString)
+            .responseObject { (response: DataResponse<Tweet>) in
+                switch response.result {
+                case .success(let value):
+                    let tweet = value
+                    completion(tweet, nil)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion(nil, error)
+                }
+
         }
         
-    }
-
-    
-    
+    }    
 }

@@ -193,12 +193,12 @@ class TweetCell: UITableViewCell, FaveButtonDelegate {
         if sender === heartButton {
             print("Favorite")
             
-            if sender.isSelected {
+            if !sender.isSelected {
                 tweetForOperations.favorited = false
-                self.delegate?.favorite(tweetID: tweetForOperations.id, shouldFavorite: false)
+                self.delegate?.favorite(tweetID: tweetForOperations.idStr, shouldFavorite: false)
             }else{
                 tweetForOperations.favorited = true
-                self.delegate?.favorite(tweetID: tweetForOperations.id, shouldFavorite: true)
+                self.delegate?.favorite(tweetID: tweetForOperations.idStr, shouldFavorite: true)
             }
             
             if tweetForOperations.favoriteCount == 0 {

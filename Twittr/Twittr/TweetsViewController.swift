@@ -192,7 +192,7 @@ extension TweetsViewController : TweetCellDelegate {
         
     }
     
-    func favorite(tweetID: UInt64, shouldFavorite: Bool) {
+    func favorite(tweetID: String, shouldFavorite: Bool) {
         twitterAPIService.favorite(tweetID: tweetID, favorite: shouldFavorite) { (tweet, error) in
             if tweet != nil {
                 print("favorite success")
