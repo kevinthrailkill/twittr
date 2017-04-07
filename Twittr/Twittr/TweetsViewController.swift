@@ -190,6 +190,26 @@ extension TweetsViewController : TweetCellDelegate {
 //        
 //        tweetsTableView.reloadRows(at: [indexPath], with: .automatic)
         
-        
     }
+    
+    func favorite(tweetID: String, shouldFavorite: Bool) {
+        twitterAPIService.favorite(tweetID: tweetID, favorite: shouldFavorite) { (tweet, error) in
+            if tweet != nil {
+                print("favorite success")
+            }else{
+                print(error!.localizedDescription)
+            }
+        }
+    }
+    
+    func retweet(tweetID: String, shouldRetweet: Bool) {
+        twitterAPIService.reweet(tweetID: tweetID, retweet: shouldRetweet) { (tweet, error) in
+            if tweet != nil {
+                print("retweet success")
+            }else{
+                print(error!.localizedDescription)
+            }
+        }
+    }
+    
 }

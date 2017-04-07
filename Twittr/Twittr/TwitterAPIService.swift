@@ -27,6 +27,11 @@ class TwitterAPIService {
     //URLS
     private var verifyCredentialURL = "https://api.twitter.com/1.1/account/verify_credentials.json"
     private var getHomeTimelineURL = "https://api.twitter.com/1.1/statuses/home_timeline.json"
+    private var retweetURL = "https://api.twitter.com/1.1/statuses/retweet/"
+    private var unRetweetURL = "https://api.twitter.com/1.1/statuses/destroy/"
+    private var favoriteURL = "https://api.twitter.com/1.1/favorites/create.json"
+    private var unFavoriteURL = "https://api.twitter.com/1.1/favorites/destroy.json"
+    private var statusURL = "https://api.twitter.com/1.1/statuses/show/"
     
     
     func byPassLoginScreen(){
@@ -147,4 +152,75 @@ class TwitterAPIService {
         }
     }
     
+    func reweet(tweetID: String, retweet: Bool, completion: @escaping (Tweet?, Error?) -> ()) {
+        
+        if !retweet {
+            
+            //un retweet
+            print(tweetID)
+            sessionManager.request(statusURL + tweetID + ".json?include_my_retweet=1", method: .get)
+                .responseObject { (response: DataResponse<Tweet>) in
+                    switch response.result {
+                    case .success(let value):
+                        let tweet = value
+                        
+                        let retweetID = tweet.currentUserRetweet!.id_str
+                        
+                        self.sessionManager.request(self.unRetweetURL + retweetID! + ".json", method: .post)
+                            .responseObject { (response: DataResponse<Tweet>) in
+                                switch response.result {
+                                case .success(let value):
+                                    let tweet = value
+                                    completion(tweet, nil)
+                                case .failure(let error):
+                                    print(error.localizedDescription)
+                                    completion(nil, error)
+                                }
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        completion(nil, error)
+                    }
+            }
+        }else{
+            sessionManager.request(retweetURL + tweetID + ".json", method: .post)
+                .responseObject { (response: DataResponse<Tweet>) in
+                    switch response.result {
+                    case .success(let value):
+                        let tweet = value
+                        completion(tweet, nil)
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        completion(nil, error)
+                    }
+            }
+        }
+    }
+    
+    func favorite(tweetID: String, favorite: Bool, completion: @escaping (Tweet?, Error?) -> ()) {
+        
+        let params = ["id" : tweetID]
+        
+        var endpoint : String
+        
+        if favorite {
+            endpoint = favoriteURL
+        }else{
+            endpoint = unFavoriteURL
+        }
+        
+        sessionManager.request(endpoint, method: .post, parameters: params, encoding: URLEncoding.queryString)
+            .responseObject { (response: DataResponse<Tweet>) in
+                switch response.result {
+                case .success(let value):
+                    let tweet = value
+                    completion(tweet, nil)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion(nil, error)
+                }
+
+        }
+        
+    }    
 }

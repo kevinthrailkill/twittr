@@ -117,11 +117,15 @@ class TweetCell: UITableViewCell, FaveButtonDelegate {
             retweetCountLabel.text = "\(tweetToConfigure.retweetCount)"
         }
         
+        retweetButton.isSelected =  tweetToConfigure.retweeted
+        
         if tweetToConfigure.favoriteCount == 0 {
             favoriteCountLabel.text = ""
         }else{
             favoriteCountLabel.text = "\(tweetToConfigure.favoriteCount)"
         }
+        
+        heartButton.isSelected = tweetToConfigure.favorited
         
         if let media = tweetToConfigure.entities?.mediaArray {
             configureMedia(mediaArray: media)
@@ -189,10 +193,12 @@ class TweetCell: UITableViewCell, FaveButtonDelegate {
         if sender === heartButton {
             print("Favorite")
             
-            if sender.isSelected {
+            if !sender.isSelected {
                 tweetForOperations.favorited = false
+                self.delegate?.favorite(tweetID: tweetForOperations.idStr, shouldFavorite: false)
             }else{
                 tweetForOperations.favorited = true
+                self.delegate?.favorite(tweetID: tweetForOperations.idStr, shouldFavorite: true)
             }
             
             if tweetForOperations.favoriteCount == 0 {
@@ -205,10 +211,12 @@ class TweetCell: UITableViewCell, FaveButtonDelegate {
         } else if sender === retweetButton {
             print("Retweet")
             
-            if sender.isSelected {
+            if !sender.isSelected {
                 tweetForOperations.retweeted = false
+                 self.delegate?.retweet(tweetID: tweetForOperations.idStr, shouldRetweet: false)
             }else{
                 tweetForOperations.retweeted = true
+                self.delegate?.retweet(tweetID: tweetForOperations.idStr, shouldRetweet: true)
             }
             
             if tweetForOperations.retweetCount == 0 {
