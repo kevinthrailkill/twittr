@@ -27,10 +27,10 @@ class Tweet: Unboxable {
     var favorited: Bool {
         didSet {
             if favorited {
-                favoriteCount += 1
+                favoriteCount -= 1
              //   TwitterClient.sharedInstance.favorite(["id": TweetID], favorite: true)
             } else {
-                favoriteCount -= 1
+                favoriteCount += 1
              //   TwitterClient.sharedInstance.favorite(["id": TweetID], favorite: false)
             }
         }
@@ -38,12 +38,12 @@ class Tweet: Unboxable {
     var retweeted: Bool {
         didSet {
             if retweeted {
-                retweetCount += 1
+                retweetCount -= 1
              //   TwitterClient.sharedInstance.retweet(["id": TweetID], retweet: true) { (tweet, error) in
               //      print("retweeted")
             
             } else {
-                retweetCount -= 1
+                retweetCount += 1
              //   TwitterClient.sharedInstance.retweet(["id": TweetID], retweet: false) { (tweet, error) in
               //      print("unretweeted")
               //  }
@@ -58,7 +58,7 @@ class Tweet: Unboxable {
         
         self.text = unboxer.unbox(key: "text")
         self.retweetCount = unboxer.unbox(key: "retweet_count") ?? 0
-        self.favoriteCount = unboxer.unbox(key: "favourites_count") ?? 0
+        self.favoriteCount = unboxer.unbox(key: "favorite_count") ?? 0
         self.favorited = unboxer.unbox(key: "favorited") ?? false
         self.retweeted = unboxer.unbox(key: "retweeted") ?? false
         
@@ -78,10 +78,11 @@ class Tweet: Unboxable {
 class Entities: Unboxable {
     
     var mediaArray: [Media]?
+    var urlArray : [TweetURLType]?
     
     required init(unboxer: Unboxer) throws {
         self.mediaArray = unboxer.unbox(key: "media")
-        
+        self.urlArray = unboxer.unbox(key: "urls")
     }
     
 }
@@ -100,9 +101,19 @@ class Media : Unboxable {
         if let urlstring = mediaUrlString {
             self.mediaURLHTTPS = URL(string: urlstring)
         }
-        
-        
     }
+}
+
+class TweetURLType : Unboxable {
     
+    var url : String?
+    var expandedUrl: String?
+    var displayUrl : String?
     
+    required init(unboxer: Unboxer) throws {
+        self.url = unboxer.unbox(key: "url")
+        self.expandedUrl = unboxer.unbox(key: "expanded_url")
+        self.displayUrl = unboxer.unbox(key: "display_url")
+
+    }
 }
