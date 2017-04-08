@@ -21,8 +21,8 @@ class TweetViewController: UIViewController {
         
         
         //load xib file
-        let nib = UINib(nibName: "TweetPageCell", bundle: nil)
-        tweetTableView.register(nib, forCellReuseIdentifier: "TweetPageCell")
+        let nib = UINib(nibName: "TweetDetailCell", bundle: nil)
+        tweetTableView.register(nib, forCellReuseIdentifier: "TweetDetailCell")
         
         tweetTableView.rowHeight = UITableViewAutomaticDimension
         tweetTableView.estimatedRowHeight = 180
@@ -64,7 +64,7 @@ extension TweetViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetPageCell", for: indexPath) as! TweetPageCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetDetailCell", for: indexPath) as! TweetDetailCell
         cell.tweet = tweet
         cell.delegate = self
         cell.indexPath = indexPath

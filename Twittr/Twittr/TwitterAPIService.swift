@@ -220,9 +220,7 @@ class TwitterAPIService {
                     print(error.localizedDescription)
                     completion(nil, error)
                 }
-
         }
-        
     }
     
     func publish(tweetBody: String, replyToStayusID: String?, completion: @escaping (Tweet?, Error?) -> ()) {
