@@ -226,9 +226,14 @@ class TwitterAPIService {
     }
     
     
-    func publish(tweetBody: String, completion: @escaping (Tweet?, Error?) -> ()) {
+    func publish(tweetBody: String, replyToStayusID: String?, completion: @escaping (Tweet?, Error?) -> ()) {
         
-        let params = ["status" : tweetBody]
+        var params = ["status" : tweetBody]
+        
+        if let replyId = replyToStayusID {
+            params["in_reply_to_status_id"] = replyId
+        }
+        
         
         sessionManager.request(updateStatusURL, method: .post, parameters: params, encoding: URLEncoding.queryString)
             .responseObject { (response: DataResponse<Tweet>) in

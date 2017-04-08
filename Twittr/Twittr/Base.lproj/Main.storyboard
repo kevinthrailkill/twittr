@@ -115,6 +115,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="v9c-ts-488">
+                        <barButtonItem key="rightBarButtonItem" title="Reply" id="geD-iq-JPT">
+                            <connections>
+                                <segue destination="uha-Fq-yAB" kind="presentation" identifier="ReplySegue" id="8YR-Qq-pWi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tweetTableView" destination="Zzg-C4-4bn" id="blq-H4-K3Q"/>
                     </connections>
@@ -122,6 +132,89 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pyR-Dl-4A3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2488.8000000000002" y="-162.3688155922039"/>
+        </scene>
+        <!--Reply View Controller-->
+        <scene sceneID="XTd-sP-wxm">
+            <objects>
+                <viewController id="tTs-yZ-3M7" customClass="ReplyViewController" customModule="Twittr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3DY-eS-gjo"/>
+                        <viewControllerLayoutGuide type="bottom" id="tuP-NO-UpE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r6o-2P-w6T">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DDb-Zc-MTv">
+                                <rect key="frame" x="16" y="72" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ESt-qe-gvw"/>
+                                    <constraint firstAttribute="width" constant="50" id="Ya8-e2-d83"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@Bassnectar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpJ-sM-MDW">
+                                <rect key="frame" x="86" y="132" width="76" height="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.74117647060000003" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oUH-Iv-3IR">
+                                <rect key="frame" x="16" y="159" width="343" height="408"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tTs-yZ-3M7" id="qiH-cB-8eJ"/>
+                                </connections>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Replying to " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwe-6Z-bve">
+                                <rect key="frame" x="16" y="132" width="70" height="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DDb-Zc-MTv" firstAttribute="leading" secondItem="r6o-2P-w6T" secondAttribute="leading" constant="16" id="2Pj-fb-dlK"/>
+                            <constraint firstItem="oUH-Iv-3IR" firstAttribute="top" secondItem="zwe-6Z-bve" secondAttribute="bottom" constant="11" id="6QE-PI-EQN"/>
+                            <constraint firstItem="zwe-6Z-bve" firstAttribute="top" secondItem="DDb-Zc-MTv" secondAttribute="bottom" constant="10" id="9Od-nM-gZf"/>
+                            <constraint firstItem="oUH-Iv-3IR" firstAttribute="leading" secondItem="r6o-2P-w6T" secondAttribute="leading" constant="16" id="EHo-HU-RWI"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EpJ-sM-MDW" secondAttribute="trailing" constant="12" id="OxJ-vO-xx5"/>
+                            <constraint firstAttribute="trailing" secondItem="oUH-Iv-3IR" secondAttribute="trailing" constant="16" id="YI5-1Z-d5E"/>
+                            <constraint firstItem="zwe-6Z-bve" firstAttribute="baseline" secondItem="EpJ-sM-MDW" secondAttribute="baseline" id="cyn-jh-pVo"/>
+                            <constraint firstItem="DDb-Zc-MTv" firstAttribute="top" secondItem="3DY-eS-gjo" secondAttribute="bottom" constant="8" id="nsk-No-grX"/>
+                            <constraint firstItem="tuP-NO-UpE" firstAttribute="top" relation="lessThanOrEqual" secondItem="oUH-Iv-3IR" secondAttribute="bottom" constant="100" id="tFh-rY-C1u"/>
+                            <constraint firstItem="zwe-6Z-bve" firstAttribute="leading" secondItem="r6o-2P-w6T" secondAttribute="leading" constant="16" id="v7t-6D-phr"/>
+                            <constraint firstItem="EpJ-sM-MDW" firstAttribute="leading" secondItem="zwe-6Z-bve" secondAttribute="trailing" id="xAP-zH-6sY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZM9-Mx-rUq">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="lKo-kw-d8E">
+                            <connections>
+                                <action selector="cancelButtonPresses:" destination="tTs-yZ-3M7" id="i32-39-i9Z"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem enabled="NO" title="Send" id="2gi-mC-y4K">
+                                <connections>
+                                    <action selector="sendButtonPressed:" destination="tTs-yZ-3M7" id="Dbf-Aw-T2M"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem enabled="NO" title="Item" id="xdm-0h-sdy"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="composeTextView" destination="oUH-Iv-3IR" id="3qB-BY-6ng"/>
+                        <outlet property="profileImageView" destination="DDb-Zc-MTv" id="ZnQ-th-Rgg"/>
+                        <outlet property="screenNameLabel" destination="EpJ-sM-MDW" id="Q3c-tY-Pgo"/>
+                        <outlet property="sendButton" destination="2gi-mC-y4K" id="Cak-hE-pmv"/>
+                        <outlet property="tweetCharacterCountBarButton" destination="xdm-0h-sdy" id="XES-dF-Jor"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GnY-MM-sB6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4015" y="-162"/>
         </scene>
         <!--New Tweet View Controller-->
         <scene sceneID="NSp-1i-SD9">
@@ -160,7 +253,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
-                                    <outlet property="delegate" destination="udo-cW-lEY" id="shP-ot-Wc6"/>
+                                    <outlet property="delegate" destination="udo-cW-lEY" id="5EN-Ag-Xda"/>
                                 </connections>
                             </textView>
                         </subviews>
@@ -183,30 +276,30 @@
                     <navigationItem key="navigationItem" id="0kR-s2-g7I">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="IOc-qR-a82">
                             <connections>
-                                <action selector="cancelButtonTapped:" destination="udo-cW-lEY" id="c0Y-WK-TFE"/>
+                                <action selector="cancelButtonPresses:" destination="udo-cW-lEY" id="OWW-3z-SBh"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem enabled="NO" title="Tweet" id="ksL-k8-cTd">
                                 <connections>
-                                    <action selector="tweetButtonPressed:" destination="udo-cW-lEY" id="NuU-in-bR3"/>
+                                    <action selector="sendButtonPressed:" destination="udo-cW-lEY" id="Ov0-pX-rsa"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem enabled="NO" title="150" id="wc2-X2-Enn"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="characterRemainingCountButton" destination="wc2-X2-Enn" id="3Xr-xO-Zbs"/>
-                        <outlet property="nameLabel" destination="fnj-cH-Au0" id="do0-6I-kfY"/>
-                        <outlet property="profileImageView" destination="Iru-8w-sjS" id="rLo-CT-AfT"/>
-                        <outlet property="screenNameLabel" destination="Vvb-jm-XTS" id="YLJ-0k-e7i"/>
-                        <outlet property="tweetButton" destination="ksL-k8-cTd" id="k7B-MW-gAV"/>
-                        <outlet property="tweetTextView" destination="271-MN-ONG" id="ivD-37-sKY"/>
+                        <outlet property="composeTextView" destination="271-MN-ONG" id="Pab-UF-JHv"/>
+                        <outlet property="nameLabel" destination="fnj-cH-Au0" id="lha-ZA-rqT"/>
+                        <outlet property="profileImageView" destination="Iru-8w-sjS" id="B0y-od-4Iy"/>
+                        <outlet property="screenNameLabel" destination="Vvb-jm-XTS" id="lzh-aW-8f2"/>
+                        <outlet property="sendButton" destination="ksL-k8-cTd" id="Nrt-nv-7pe"/>
+                        <outlet property="tweetCharacterCountBarButton" destination="wc2-X2-Enn" id="Q1b-0f-usD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2dv-V0-q90" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2632.8000000000002" y="-925.18740629685169"/>
+            <point key="canvasLocation" x="2489" y="-851"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Fg-VW-oIh">
@@ -242,7 +335,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9uB-qA-atY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1693.5999999999999" y="-925.18740629685169"/>
+            <point key="canvasLocation" x="1694" y="-851"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QVW-a6-Rwj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uha-Fq-yAB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Aud-kF-Hd2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tTs-yZ-3M7" kind="relationship" relationship="rootViewController" id="YtR-YO-3ea"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vd4-dN-ikk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3271" y="-162"/>
         </scene>
     </scenes>
 </document>
