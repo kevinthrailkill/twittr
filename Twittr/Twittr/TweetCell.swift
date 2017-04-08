@@ -2,7 +2,7 @@
 //  TweetCell.swift
 //  Twittr
 //
-//  Created by Kevin Thrailkill on 4/6/17.
+//  Created by Kevin Thrailkill on 4/8/17.
 //  Copyright © 2017 kevinthrailkill. All rights reserved.
 //
 
@@ -10,10 +10,9 @@ import UIKit
 import FaveButton
 import AFNetworking
 
+class TweetCell: UITableViewCell {
 
-class TweetCell: UITableViewCell, FaveButtonDelegate {
 
-    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
@@ -22,21 +21,18 @@ class TweetCell: UITableViewCell, FaveButtonDelegate {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var retweetCountLabel: UILabel!
     @IBOutlet weak var favoriteCountLabel: UILabel!
-    @IBOutlet weak var heartButton: FaveButton!
+
+    
+    //action buttons
+    @IBOutlet weak var favoriteButton: FaveButton!
     @IBOutlet weak var retweetButton: FaveButton!
     @IBOutlet weak var replyButton: FaveButton!
-    
-    @IBOutlet weak var buttonStackView: UIStackView!
-    
     
     //retweet top
     @IBOutlet weak var retweetImageView: UIImageView!
     @IBOutlet weak var retweetUsernameLabel: UILabel!
-    @IBOutlet weak var retweetLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var retweetHeightConstraint: NSLayoutConstraint!
     
-    
-    //media height constraint
-    @IBOutlet weak var mediaImageViewHeightContraint: NSLayoutConstraint!
     
     var tweet : Tweet! {
         didSet {
@@ -48,54 +44,41 @@ class TweetCell: UITableViewCell, FaveButtonDelegate {
     weak var delegate: TweetCellDelegate?
     var indexPath: IndexPath!
     
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
-    
-    
-    
     func configure(){
-        
-        
-        //prevents did select row from happening when selecting on stack view
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleStackViewTap))
-        buttonStackView.addGestureRecognizer(tap)
-        
-        
         
         // if its a retweet, then grab retweeted status
         if let retweetedStatus = tweet.retweetedStatus {
             retweetUsernameLabel.text = tweet.tweetOwner!.screenName! + " retweeted"
             retweetImageView.isHidden = false
             retweetUsernameLabel.isHidden = false
-            retweetLabelHeightConstraint.constant = 12
+            retweetHeightConstraint.constant = 12
             tweetForOperations = retweetedStatus
-            configureTweetCell(tweetToConfigure: retweetedStatus)
+            fillInTweetCell()
         }else{
-            
-            tweetForOperations = tweet
-            configureTweetCell(tweetToConfigure: tweet)
             retweetImageView.isHidden = true
             retweetUsernameLabel.isHidden = true
-            retweetLabelHeightConstraint.constant = 0
+            retweetHeightConstraint.constant = 0
+            tweetForOperations = tweet
+            fillInTweetCell()
             
         }
     }
     
-    func configureTweetCell(tweetToConfigure: Tweet) {
- 
+    
+    func fillInTweetCell() {
         
-      //  mediaImageViewHeightContraint.constant = 0
-        
-        if let owner = tweetToConfigure.tweetOwner {
+        if let owner = tweetForOperations.tweetOwner {
             nameLabel.text = owner.name
             screenNameLabel.text = "@" + owner.screenName!
             
@@ -107,45 +90,41 @@ class TweetCell: UITableViewCell, FaveButtonDelegate {
             print("Error no owner")
         }
         
+        tweetTextLabel.text = tweetForOperations.text
+        timeLabel.text = tweetForOperations.timeStamp!.ago
         
-        tweetTextLabel.text = tweetToConfigure.text
-        timeLabel.text = tweetToConfigure.timeStamp!.ago
-        
-        if tweetToConfigure.retweetCount == 0 {
+        if tweetForOperations.retweetCount == 0 {
             retweetCountLabel.text = ""
         }else{
-            retweetCountLabel.text = "\(tweetToConfigure.retweetCount)"
+            retweetCountLabel.text = "\(tweetForOperations.retweetCount)"
         }
         
-        retweetButton.isSelected =  tweetToConfigure.retweeted
+        retweetButton.isSelected =  tweetForOperations.retweeted
         
-        if tweetToConfigure.favoriteCount == 0 {
+        if tweetForOperations.favoriteCount == 0 {
             favoriteCountLabel.text = ""
         }else{
-            favoriteCountLabel.text = "\(tweetToConfigure.favoriteCount)"
+            favoriteCountLabel.text = "\(tweetForOperations.favoriteCount)"
         }
         
-        heartButton.isSelected = tweetToConfigure.favorited
+        favoriteButton.isSelected = tweetForOperations.favorited
         
-        if let media = tweetToConfigure.entities?.mediaArray {
+        if let media = tweetForOperations.entities?.mediaArray {
             configureMedia(mediaArray: media)
         }
         
-        if let tweetUrls = tweetToConfigure.entities?.urlArray {
+        if let tweetUrls = tweetForOperations.entities?.urlArray {
             configureUrl(urlArray: tweetUrls)
         }
         
         
     }
     
-    
     //need to figure out what to do with these urls,
     //currently just hiding
     func configureUrl(urlArray: [TweetURLType]) {
         for url in urlArray {
-            
             print(url.displayUrl!)
-            
             //currently just removing the url
             tweetTextLabel.text = tweetTextLabel.text?.replacingOccurrences(of: url.url!, with: "")
         }
@@ -155,43 +134,27 @@ class TweetCell: UITableViewCell, FaveButtonDelegate {
     func configureMedia(mediaArray: [Media]) {
         for media in mediaArray {
             tweetTextLabel.text = tweetTextLabel.text?.replacingOccurrences(of: media.urlInTweet!, with: "")
-            
-           // print(media.urlInTweet!)
-            
             if(media.type! == "photo") {
-                
-//                tweetMediaImageView.isHidden = false
-//                mediaImageViewHeightContraint.constant = 100
-//                tweetMediaImageView.layer.cornerRadius = 5
-//                tweetMediaImageView.clipsToBounds = true
-//                
-//                
-//                tweetMediaImageView.setImageWith(URLRequest(url:media.mediaURLHTTPS!), placeholderImage: nil, success: { (imageRequest, imageResponse, image) in
-//                    self.tweetMediaImageView.image = image
-//                    self.delegate?.reload(tweetCell: self, at: self.indexPath)
-//                }, failure: { (imageRequest, imageResponse, error) in
-//                    print(error.localizedDescription)
-//                })
-                
-             
+                //                tweetMediaImageView.isHidden = false
+                //                mediaImageViewHeightContraint.constant = 100
+                //                tweetMediaImageView.layer.cornerRadius = 5
+                //                tweetMediaImageView.clipsToBounds = true
+                //
+                //
+                //                tweetMediaImageView.setImageWith(URLRequest(url:media.mediaURLHTTPS!), placeholderImage: nil, success: { (imageRequest, imageResponse, image) in
+                //                    self.tweetMediaImageView.image = image
+                //                    self.delegate?.reload(tweetCell: self, at: self.indexPath)
+                //                }, failure: { (imageRequest, imageResponse, error) in
+                //                    print(error.localizedDescription)
+                //                })
             }
         }
-
     }
-    
-    
-    func handleStackViewTap(sender: UITapGestureRecognizer? = nil) {
-        // handling code
-        
-    }
-    
-    
-    //Mark: FaveButton Delegate
     
     @IBAction func faveButtonPressed(_ sender: FaveButton) {
-
-        if sender === heartButton {
-            print("Favorite")
+        
+        if sender === favoriteButton {
+            print("Favorite Presses")
             
             if !sender.isSelected {
                 tweetForOperations.favorited = false
@@ -207,13 +170,12 @@ class TweetCell: UITableViewCell, FaveButtonDelegate {
                 favoriteCountLabel.text = "\(tweetForOperations.favoriteCount)"
             }
             
-            
         } else if sender === retweetButton {
-            print("Retweet")
+            print("Retweet Pressed")
             
             if !sender.isSelected {
                 tweetForOperations.retweeted = false
-                 self.delegate?.retweet(tweetID: tweetForOperations.idStr, shouldRetweet: false, indexPath: self.indexPath)
+                self.delegate?.retweet(tweetID: tweetForOperations.idStr, shouldRetweet: false, indexPath: self.indexPath)
             }else{
                 tweetForOperations.retweeted = true
                 self.delegate?.retweet(tweetID: tweetForOperations.idStr, shouldRetweet: true, indexPath: self.indexPath)
@@ -226,25 +188,20 @@ class TweetCell: UITableViewCell, FaveButtonDelegate {
             }
             
         } else {
-            print("Reply")
-            
+            print("Reply Pressed")
         }
     }
-    
-    
-    
+
+}
+
+extension TweetCell : FaveButtonDelegate {
     func faveButton(_ faveButton: FaveButton, didSelected selected: Bool){
     }
     
     func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?{
-        if( faveButton === heartButton ){
+        if faveButton === favoriteButton {
             return colors
         }
         return nil
     }
-    
-    
 }
-
-
-

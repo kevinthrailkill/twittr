@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="52" id="KGk-i7-Jjw" customClass="TweetCell" customModule="Twittr" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetBasicCell" rowHeight="52" id="KGk-i7-Jjw" customClass="TweetBasicCell" customModule="Twittr" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -72,8 +72,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="faveButtonPressed:" destination="KGk-i7-Jjw" eventType="touchDragInside" id="ofg-qe-lLf"/>
-                                            <outlet property="delegate" destination="-1" id="wHO-7d-6aC"/>
+                                            <action selector="faveButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="LcB-NY-cDE"/>
+                                            <outlet property="delegate" destination="KGk-i7-Jjw" id="yw1-QM-Tch"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -107,8 +107,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="faveButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hQx-Pf-IK0"/>
-                                            <outlet property="delegate" destination="-1" id="eHe-Yr-jOT"/>
+                                            <action selector="faveButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="eLb-2T-QP1"/>
+                                            <outlet property="delegate" destination="KGk-i7-Jjw" id="qzU-Qs-TYg"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIN-bu-8I1">
@@ -131,8 +131,8 @@
                                         </constraints>
                                         <state key="normal" image="heart14"/>
                                         <connections>
-                                            <action selector="faveButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="TeZ-jC-yL9"/>
-                                            <outlet property="delegate" destination="-1" id="QBs-zz-klH"/>
+                                            <action selector="faveButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pbP-gT-BSL"/>
+                                            <outlet property="delegate" destination="KGk-i7-Jjw" id="VNI-Jh-q9z"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntf-tO-X0K">
@@ -194,22 +194,21 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="buttonStackView" destination="ikB-Re-qNX" id="p5q-F5-rs0"/>
-                <outlet property="favoriteCountLabel" destination="ntf-tO-X0K" id="QkK-nA-L3M"/>
-                <outlet property="heartButton" destination="XXT-ak-cfp" id="gJM-Rc-ZHr"/>
+                <outlet property="buttonStackView" destination="ikB-Re-qNX" id="gZd-aL-dRj"/>
+                <outlet property="favoriteButton" destination="XXT-ak-cfp" id="b96-bV-Edr"/>
+                <outlet property="favoriteCountLabel" destination="ntf-tO-X0K" id="j8K-BH-Hlh"/>
                 <outlet property="mediaImageViewHeightContraint" destination="e8a-zD-gCS" id="gi8-2U-92E"/>
-                <outlet property="nameLabel" destination="9sm-cl-KXD" id="eyo-JT-bUk"/>
-                <outlet property="profileImageView" destination="9ii-0J-zYJ" id="cdB-Lz-vCP"/>
-                <outlet property="replyButton" destination="7az-io-5S2" id="au7-Wy-FXJ"/>
-                <outlet property="retweetButton" destination="kvr-CL-Axl" id="G0F-Hz-0h7"/>
-                <outlet property="retweetCountLabel" destination="cIN-bu-8I1" id="tGb-rN-hHb"/>
-                <outlet property="retweetImageView" destination="84p-ir-8Eb" id="msN-D3-cxU"/>
-                <outlet property="retweetLabelHeightConstraint" destination="awa-Pc-7qq" id="6tT-Bf-XAE"/>
-                <outlet property="retweetUsernameLabel" destination="DQW-Mp-gT0" id="PFK-6t-vw4"/>
-                <outlet property="screenNameLabel" destination="iEt-yi-Fcf" id="bkL-vn-uJL"/>
-                <outlet property="timeLabel" destination="AHm-X8-n3k" id="SsZ-tg-13g"/>
-                <outlet property="tweetMediaImageView" destination="cP8-R7-209" id="Flt-gY-p9c"/>
-                <outlet property="tweetTextLabel" destination="wDb-R6-czs" id="iVo-jD-vJd"/>
+                <outlet property="nameLabel" destination="9sm-cl-KXD" id="kXK-Wh-Qsw"/>
+                <outlet property="profileImageView" destination="9ii-0J-zYJ" id="Riu-RS-ecy"/>
+                <outlet property="replyButton" destination="7az-io-5S2" id="b3V-uz-bTg"/>
+                <outlet property="retweetButton" destination="kvr-CL-Axl" id="rr1-lq-aJW"/>
+                <outlet property="retweetCountLabel" destination="cIN-bu-8I1" id="h3D-aI-GSi"/>
+                <outlet property="retweetHeightConstraint" destination="Gjb-jv-Er9" id="2Uz-R6-Jc3"/>
+                <outlet property="retweetImageView" destination="84p-ir-8Eb" id="fZ8-Nh-jrx"/>
+                <outlet property="retweetUsernameLabel" destination="DQW-Mp-gT0" id="Lch-GW-mRU"/>
+                <outlet property="screenNameLabel" destination="iEt-yi-Fcf" id="UWf-MD-36z"/>
+                <outlet property="timeLabel" destination="AHm-X8-n3k" id="ND4-hh-LmC"/>
+                <outlet property="tweetTextLabel" destination="wDb-R6-czs" id="a1y-dc-TI9"/>
             </connections>
             <point key="canvasLocation" x="-37" y="59"/>
         </tableViewCell>

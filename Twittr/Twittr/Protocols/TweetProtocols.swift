@@ -10,12 +10,8 @@ import Foundation
 
 protocol TweetCellDelegate: class {
     
-    func reload(tweetCell: TweetCell, at indexPath: IndexPath)
-    
     func favorite(tweetID: String, shouldFavorite: Bool, indexPath: IndexPath)
-    
     func retweet(tweetID: String, shouldRetweet: Bool, indexPath: IndexPath)
-    
     
 }
 

@@ -33,8 +33,8 @@ class TweetsViewController: UIViewController {
         
         
         //load xib file
-        let nib = UINib(nibName: "TweetCell", bundle: nil)
-        tweetsTableView.register(nib, forCellReuseIdentifier: "TweetCell")
+        let nib = UINib(nibName: "TweetBasicCell", bundle: nil)
+        tweetsTableView.register(nib, forCellReuseIdentifier: "TweetBasicCell")
         
         tweetsTableView.rowHeight = UITableViewAutomaticDimension
         tweetsTableView.estimatedRowHeight = 90
@@ -176,7 +176,7 @@ class TweetsViewController: UIViewController {
         } else if segue.identifier == "TweetPageSegue" {
             let tweetController = segue.destination as! TweetViewController
             tweetController.twitterAPIService = twitterAPIService
-            let tweetCell = tweetsTableView.cellForRow(at: indexPathToReload!) as! TweetCell
+            let tweetCell = tweetsTableView.cellForRow(at: indexPathToReload!) as! TweetBasicCell
             tweetController.tweet = tweetCell.tweet
             
         }
@@ -192,7 +192,7 @@ extension TweetsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetBasicCell", for: indexPath) as! TweetCell
         let tweet = tweetsArray[indexPath.row]
         cell.tweet = tweet
         cell.delegate = self

@@ -76,9 +76,6 @@ extension TweetViewController : UITableViewDelegate, UITableViewDataSource {
 extension TweetViewController : TweetCellDelegate {
     
     
-    func reload(tweetCell: TweetCell, at indexPath: IndexPath ) {
-    }
-    
     func favorite(tweetID: String, shouldFavorite: Bool, indexPath: IndexPath) {
         twitterAPIService.favorite(tweetID: tweetID, favorite: shouldFavorite) { (tweet, error) in
             if tweet != nil {

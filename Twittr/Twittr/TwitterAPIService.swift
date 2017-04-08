@@ -225,7 +225,6 @@ class TwitterAPIService {
         
     }
     
-    
     func publish(tweetBody: String, replyToStayusID: String?, completion: @escaping (Tweet?, Error?) -> ()) {
         
         var params = ["status" : tweetBody]
