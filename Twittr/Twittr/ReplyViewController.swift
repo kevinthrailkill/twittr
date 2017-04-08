@@ -20,7 +20,6 @@ class ReplyViewController: ComposeViewController {
     }
     
     override func configureComposeView() {
-        super.configureComposeView()
         
         if let owner = User._currentUser {
             profileImageView.setImageWith(owner.profileURL!)
@@ -35,7 +34,7 @@ class ReplyViewController: ComposeViewController {
         
         maxtext = 140 - tweetToReply!.tweetOwner!.screenName!.characters.count - 2
         
-        tweetCharacterCountBarButton.title = "\(maxtext)"
+        super.configureComposeView()
         
     }
 

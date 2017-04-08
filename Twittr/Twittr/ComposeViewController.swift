@@ -25,6 +25,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         configureComposeView()
+        tweetCharacterCountBarButton.title = "\(maxtext)"
+
 
     }
     

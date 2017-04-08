@@ -22,7 +22,6 @@ class NewTweetViewController: ComposeViewController {
     }
     
     override func configureComposeView() {
-        super.configureComposeView()
         
         if let owner = User._currentUser {
             nameLabel.text = owner.name
@@ -36,7 +35,8 @@ class NewTweetViewController: ComposeViewController {
             print("Error no owner")
         }
         
-        tweetCharacterCountBarButton.title = "\(maxtext)"
+        super.configureComposeView()
+
         
     }
     
