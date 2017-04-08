@@ -189,6 +189,7 @@ class TweetCell: UITableViewCell {
             
         } else {
             print("Reply Pressed")
+            self.delegate?.reply(forCellAt: indexPath)
         }
     }
 

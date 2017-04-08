@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import FaveButton
-import AFNetworking
-
 
 class TweetBasicCell: TweetCell {
 

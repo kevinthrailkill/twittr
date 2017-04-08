@@ -210,7 +210,7 @@
                 <outlet property="timeLabel" destination="AHm-X8-n3k" id="ND4-hh-LmC"/>
                 <outlet property="tweetTextLabel" destination="wDb-R6-czs" id="a1y-dc-TI9"/>
             </connections>
-            <point key="canvasLocation" x="-37" y="59"/>
+            <point key="canvasLocation" x="-37" y="58.5"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -170,7 +170,7 @@ class TweetsViewController: UIViewController {
             let newTweetNavController = segue.destination
                 as! UINavigationController
             let newTweetViewController = newTweetNavController.viewControllers[0] as! NewTweetViewController
-            
+    
             newTweetViewController.twitterAPIService = twitterAPIService
             newTweetViewController.delegate = self
         } else if segue.identifier == "TweetPageSegue" {
@@ -178,7 +178,14 @@ class TweetsViewController: UIViewController {
             tweetController.twitterAPIService = twitterAPIService
             let tweetCell = tweetsTableView.cellForRow(at: indexPathToReload!) as! TweetBasicCell
             tweetController.tweet = tweetCell.tweet
-            
+        }else if segue.identifier == "ReplyFromHomeScreenSegue" {
+            let newTweetNavController = segue.destination
+                as! UINavigationController
+            let replyiewController = newTweetNavController.viewControllers[0] as! ReplyViewController
+            replyiewController.twitterAPIService = twitterAPIService
+            let tweetCell = tweetsTableView.cellForRow(at: indexPathToReload!) as! TweetBasicCell
+            replyiewController.tweetToReply = tweetCell.tweet
+            indexPathToReload = nil
         }
     }
 }
@@ -205,7 +212,6 @@ extension TweetsViewController: UITableViewDelegate, UITableViewDataSource {
         indexPathToReload = indexPath
         
         self.performSegue(withIdentifier: "TweetPageSegue", sender: self)
-        
         
     }
     
@@ -237,6 +243,12 @@ extension TweetsViewController : TweetCellDelegate, NewTweetDelegate {
             }
         }
     }
+    
+    func reply(forCellAt indexPath: IndexPath) {
+        indexPathToReload = indexPath
+        self.performSegue(withIdentifier: "ReplyFromHomeScreenSegue", sender: self)
+    }
+    
     
     func addNew(tweet: Tweet) {
         tweetsArray.insert(tweet, at: 0)

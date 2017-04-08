@@ -37,6 +37,11 @@ class TweetViewController: UIViewController {
     }
     
 
+    @IBAction func replyButtonPressed(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "ReplySegue", sender: self)
+        
+    }
     
     // MARK: - Navigation
 
@@ -97,6 +102,10 @@ extension TweetViewController : TweetCellDelegate {
                 print(error!.localizedDescription)
             }
         }
+    }
+    
+    func reply(forCellAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "ReplySegue", sender: self)
     }
 
     

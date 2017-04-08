@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import FaveButton
 
 class TweetDetailCell: TweetCell {
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,5 +21,4 @@ class TweetDetailCell: TweetCell {
         // Configure the view for the selected state
     }
     
-
 }

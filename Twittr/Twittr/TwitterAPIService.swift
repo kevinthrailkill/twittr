@@ -105,7 +105,6 @@ class TwitterAPIService {
                     }
                 }
                 
-                
                 completion(true, nil)
         },
             failure: { error in
@@ -230,7 +229,6 @@ class TwitterAPIService {
         if let replyId = replyToStayusID {
             params["in_reply_to_status_id"] = replyId
         }
-        
         
         sessionManager.request(updateStatusURL, method: .post, parameters: params, encoding: URLEncoding.queryString)
             .responseObject { (response: DataResponse<Tweet>) in
