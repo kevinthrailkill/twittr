@@ -21,6 +21,8 @@ class TweetsViewController: UIViewController {
     var twitterAPIService : TwitterAPIService!
     var tweetsArray: [Tweet] = []
     let refreshControl = UIRefreshControl()
+    var indexPathToReload : IndexPath? = nil
+
     
     
     var isLoadingMoreData : IsLoadingMore = .notLoadingMoreData
@@ -58,6 +60,26 @@ class TweetsViewController: UIViewController {
 
 
     }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        reloadCell()
+        
+    }
+    
+    
+    fileprivate func reloadCell() {
+        if let index = indexPathToReload {
+            //reload data after coming back from detail tweet view
+            tweetsTableView.beginUpdates()
+            tweetsTableView.reloadRows(at: [index], with: .fade)
+            tweetsTableView.endUpdates()
+            indexPathToReload = nil
+        }
+    }
+    
     
     // Hides the RefreshControl
     func refreshControlAction(refreshControl: UIRefreshControl) {
@@ -151,6 +173,12 @@ class TweetsViewController: UIViewController {
             
             newTweetViewController.twitterAPIService = twitterAPIService
             newTweetViewController.delegate = self
+        } else if segue.identifier == "TweetPageSegue" {
+            let tweetController = segue.destination as! TweetViewController
+            tweetController.twitterAPIService = twitterAPIService
+            let tweetCell = tweetsTableView.cellForRow(at: indexPathToReload!) as! TweetCell
+            tweetController.tweet = tweetCell.tweet
+            
         }
     }
 }
@@ -172,28 +200,26 @@ extension TweetsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        indexPathToReload = indexPath
+        
+        self.performSegue(withIdentifier: "TweetPageSegue", sender: self)
+        
+        
+    }
     
 }
 
 extension TweetsViewController : TweetCellDelegate, NewTweetDelegate {
     
-    func reload(tweetCell: TweetCell, at indexPath: IndexPath ) {
-        
-        
-//        if reloadedIndexPaths.index(of: indexPath.row) != nil {
-//            return
-//        }
-//        
-//        reloadedIndexPaths.append(indexPath.row)
-//        
-//        tweetsTableView.reloadRows(at: [indexPath], with: .automatic)
-        
+    func reload(tweetCell: TweetCell, at indexPath: IndexPath ) {        
     }
     
-    func favorite(tweetID: String, shouldFavorite: Bool) {
+    func favorite(tweetID: String, shouldFavorite: Bool, indexPath: IndexPath) {
         twitterAPIService.favorite(tweetID: tweetID, favorite: shouldFavorite) { (tweet, error) in
             if tweet != nil {
+                
                 print("favorite success")
             }else{
                 print(error!.localizedDescription)
@@ -201,9 +227,10 @@ extension TweetsViewController : TweetCellDelegate, NewTweetDelegate {
         }
     }
     
-    func retweet(tweetID: String, shouldRetweet: Bool) {
+    func retweet(tweetID: String, shouldRetweet: Bool, indexPath: IndexPath) {
         twitterAPIService.reweet(tweetID: tweetID, retweet: shouldRetweet) { (tweet, error) in
             if tweet != nil {
+                
                 print("retweet success")
             }else{
                 print(error!.localizedDescription)

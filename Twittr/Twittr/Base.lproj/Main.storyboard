@@ -84,11 +84,44 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tweetsTableView" destination="qeM-U4-dNm" id="whF-ta-zCj"/>
+                        <segue destination="b6E-Uy-C8w" kind="show" identifier="TweetPageSegue" id="hWa-np-Pu1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="98G-La-PX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1693.5999999999999" y="-162.3688155922039"/>
+        </scene>
+        <!--Tweet View Controller-->
+        <scene sceneID="8qd-gR-EuW">
+            <objects>
+                <viewController id="b6E-Uy-C8w" customClass="TweetViewController" customModule="Twittr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="izT-fY-DRw"/>
+                        <viewControllerLayoutGuide type="bottom" id="3Wj-zc-Lk4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dne-4q-4cN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zzg-C4-4bn">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="b6E-Uy-C8w" id="D7R-1Y-GJo"/>
+                                    <outlet property="delegate" destination="b6E-Uy-C8w" id="X8d-RH-VzB"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="tweetTableView" destination="Zzg-C4-4bn" id="blq-H4-K3Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pyR-Dl-4A3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2488.8000000000002" y="-162.3688155922039"/>
         </scene>
         <!--New Tweet View Controller-->
         <scene sceneID="NSp-1i-SD9">

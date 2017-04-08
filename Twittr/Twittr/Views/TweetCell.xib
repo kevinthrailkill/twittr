@@ -211,7 +211,7 @@
                 <outlet property="tweetMediaImageView" destination="cP8-R7-209" id="Flt-gY-p9c"/>
                 <outlet property="tweetTextLabel" destination="wDb-R6-czs" id="iVo-jD-vJd"/>
             </connections>
-            <point key="canvasLocation" x="-9" y="-17.5"/>
+            <point key="canvasLocation" x="-37" y="59"/>
         </tableViewCell>
     </objects>
     <resources>

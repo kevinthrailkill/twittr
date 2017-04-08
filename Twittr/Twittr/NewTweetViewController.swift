@@ -13,17 +13,16 @@ import UIKit
 class NewTweetViewController: UIViewController, UITextViewDelegate {
 
     
-    
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var tweetTextView: UITextView!
     @IBOutlet weak var tweetButton: UIBarButtonItem!
     
+    
     var twitterAPIService: TwitterAPIService!
     let maxtext: Int = 150
     weak var delegate: NewTweetDelegate?
-    
     
     @IBOutlet weak var characterRemainingCountButton: UIBarButtonItem!
     
