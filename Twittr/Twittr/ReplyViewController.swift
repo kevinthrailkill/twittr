@@ -35,6 +35,8 @@ class ReplyViewController: ComposeViewController {
         
         maxtext = 140 - tweetToReply!.tweetOwner!.screenName!.characters.count - 2
         
+        tweetCharacterCountBarButton.title = "\(maxtext)"
+        
     }
 
     override func didReceiveMemoryWarning() {

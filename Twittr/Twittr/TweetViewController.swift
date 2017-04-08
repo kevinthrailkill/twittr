@@ -53,7 +53,14 @@ class TweetViewController: UIViewController {
             let replyiewController = newTweetNavController.viewControllers[0] as! ReplyViewController
             
             replyiewController.twitterAPIService = twitterAPIService
-            replyiewController.tweetToReply = tweet
+            
+            if let tweetForOp = tweet.retweetedStatus {
+                replyiewController.tweetToReply = tweetForOp
+            }else{
+                replyiewController.tweetToReply = tweet
+            }
+            
+            
         }
     }
     

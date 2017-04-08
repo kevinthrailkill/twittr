@@ -36,6 +36,8 @@ class NewTweetViewController: ComposeViewController {
             print("Error no owner")
         }
         
+        tweetCharacterCountBarButton.title = "\(maxtext)"
+        
     }
     
     override func sendOutTweet() {

@@ -184,7 +184,7 @@ class TweetsViewController: UIViewController {
             let replyiewController = newTweetNavController.viewControllers[0] as! ReplyViewController
             replyiewController.twitterAPIService = twitterAPIService
             let tweetCell = tweetsTableView.cellForRow(at: indexPathToReload!) as! TweetBasicCell
-            replyiewController.tweetToReply = tweetCell.tweet
+            replyiewController.tweetToReply = tweetCell.tweetForOperations
             indexPathToReload = nil
         }
     }
