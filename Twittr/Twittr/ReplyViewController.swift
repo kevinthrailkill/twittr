@@ -1,33 +1,28 @@
 //
-//  NewTweetViewController.swift
+//  ReplyViewController.swift
 //  Twittr
 //
-//  Created by Kevin Thrailkill on 4/7/17.
+//  Created by Kevin Thrailkill on 4/8/17.
 //  Copyright © 2017 kevinthrailkill. All rights reserved.
 //
 
 import UIKit
 
+class ReplyViewController: ComposeViewController {
 
-
-class NewTweetViewController: ComposeViewController {
-
-    @IBOutlet weak var nameLabel: UILabel!
-    
-    weak var delegate: NewTweetDelegate?
+    var tweetToReply: Tweet?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        configureComposeView()
+
     }
     
     override func configureComposeView() {
         super.configureComposeView()
         
         if let owner = User._currentUser {
-            nameLabel.text = owner.name
-            screenNameLabel.text = "@" + owner.screenName!
-            
             profileImageView.setImageWith(owner.profileURL!)
             profileImageView.layer.cornerRadius = 5
             profileImageView.clipsToBounds = true
@@ -36,31 +31,31 @@ class NewTweetViewController: ComposeViewController {
             print("Error no owner")
         }
         
+        screenNameLabel.text = "@" + tweetToReply!.tweetOwner!.screenName!
+        
+        maxtext = 140 - tweetToReply!.tweetOwner!.screenName!.characters.count - 2
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     override func sendOutTweet() {
+        
         super.sendOutTweet()
         
-        twitterAPIService.publish(tweetBody: composeTextView.text, replyToStayusID: nil) { (tweet, error) in
+        let tweetText = screenNameLabel.text! + " " + composeTextView.text
+        
+        twitterAPIService.publish(tweetBody: tweetText, replyToStayusID: tweetToReply!.idStr) { (tweet, error) in
             if let tweet = tweet {
-                print("sucess")
+                print("reply success")
                 print(tweet)
-                
-                self.delegate?.addNew(tweet: tweet)
                 self.dismiss(animated: true)
             }else{
                 print(error!.localizedDescription)
             }
         }
     }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
 }
-
-
