@@ -16,6 +16,10 @@ class ReplyViewController: ComposeViewController {
         super.viewDidLoad()
 
         configureComposeView()
+        
+        let image = UIImage(named: "twittericon.png")
+        self.navigationItem.titleView = UIImageView(image: image)
+
 
     }
     

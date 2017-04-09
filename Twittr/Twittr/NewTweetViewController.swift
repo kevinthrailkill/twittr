@@ -19,6 +19,10 @@ class NewTweetViewController: ComposeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let image = UIImage(named: "twittericon.png")
+        self.navigationItem.titleView = UIImageView(image: image)
+
+        
     }
     
     override func configureComposeView() {

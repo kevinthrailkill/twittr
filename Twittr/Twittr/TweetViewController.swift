@@ -19,6 +19,9 @@ class TweetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let image = UIImage(named: "twittericon.png")
+        self.navigationItem.titleView = UIImageView(image: image)
+
         
         //load xib file
         let nib = UINib(nibName: "TweetDetailCell", bundle: nil)

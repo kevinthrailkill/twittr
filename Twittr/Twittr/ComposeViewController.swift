@@ -24,6 +24,10 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let image = UIImage(named: "twittericon.png")
+        self.navigationItem.titleView = UIImageView(image: image)
+
+        
         configureComposeView()
         tweetCharacterCountBarButton.title = "\(maxtext)"
 

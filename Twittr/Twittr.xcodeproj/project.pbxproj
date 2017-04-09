@@ -73,12 +73,8 @@
 		190DFB601E96DE230098FAC0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				190DFB751E995BF10098FAC0 /* TweetCell.swift */,
-				190DFB5C1E96DE1A0098FAC0 /* TweetBasicCell.swift */,
-				190DFB5D1E96DE1A0098FAC0 /* TweetBasicCell.xib */,
+				190DFB771E9978BC0098FAC0 /* Cells */,
 				190DFB641E9821220098FAC0 /* HelperClassesAndFunctions.swift */,
-				190DFB6A1E9887550098FAC0 /* TweetDetailCell.swift */,
-				190DFB6B1E9887550098FAC0 /* TweetDetailCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -99,6 +95,18 @@
 				190DFB701E994EF00098FAC0 /* ReplyViewController.swift */,
 			);
 			name = Create;
+			sourceTree = "<group>";
+		};
+		190DFB771E9978BC0098FAC0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				190DFB751E995BF10098FAC0 /* TweetCell.swift */,
+				190DFB5C1E96DE1A0098FAC0 /* TweetBasicCell.swift */,
+				190DFB5D1E96DE1A0098FAC0 /* TweetBasicCell.xib */,
+				190DFB6A1E9887550098FAC0 /* TweetDetailCell.swift */,
+				190DFB6B1E9887550098FAC0 /* TweetDetailCell.xib */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		1916B4CB1E9492CB004E7C3A = {
