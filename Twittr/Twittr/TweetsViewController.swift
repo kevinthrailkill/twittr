@@ -18,7 +18,8 @@ class TweetsViewController: UIViewController {
     
     @IBOutlet weak var tweetsTableView: UITableView!
     
-    var twitterAPIService : TwitterAPIService!
+    let twitterAPIService = TwitterAPIService.sharedInstance
+    
     var tweetsArray: [Tweet] = []
     let refreshControl = UIRefreshControl()
     var indexPathToReload : IndexPath? = nil
@@ -174,19 +175,15 @@ class TweetsViewController: UIViewController {
             let newTweetNavController = segue.destination
                 as! UINavigationController
             let newTweetViewController = newTweetNavController.viewControllers[0] as! NewTweetViewController
-    
-            newTweetViewController.twitterAPIService = twitterAPIService
             newTweetViewController.delegate = self
         } else if segue.identifier == "TweetPageSegue" {
             let tweetController = segue.destination as! TweetViewController
-            tweetController.twitterAPIService = twitterAPIService
             let tweetCell = tweetsTableView.cellForRow(at: indexPathToReload!) as! TweetBasicCell
             tweetController.tweet = tweetCell.tweet
         }else if segue.identifier == "ReplyFromHomeScreenSegue" {
             let newTweetNavController = segue.destination
                 as! UINavigationController
             let replyiewController = newTweetNavController.viewControllers[0] as! ReplyViewController
-            replyiewController.twitterAPIService = twitterAPIService
             let tweetCell = tweetsTableView.cellForRow(at: indexPathToReload!) as! TweetBasicCell
             replyiewController.tweetToReply = tweetCell.tweetForOperations
             replyiewController.delegate = self

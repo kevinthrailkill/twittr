@@ -17,7 +17,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var composeTextView: UITextView!
     @IBOutlet weak var sendButton: UIBarButtonItem!
     
-    var twitterAPIService: TwitterAPIService!
+   // var twitterAPIService: TwitterAPIService!
+    let twitterAPIService = TwitterAPIService.sharedInstance
     var maxtext: Int = 140
     weak var delegate: ComposeTweetDelegate?
     

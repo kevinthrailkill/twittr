@@ -10,7 +10,7 @@ import UIKit
 
 class TweetViewController: UIViewController {
 
-    var twitterAPIService: TwitterAPIService!
+    let twitterAPIService = TwitterAPIService.sharedInstance
     var tweet : Tweet!
     
     @IBOutlet weak var tweetTableView: UITableView!
@@ -55,15 +55,11 @@ class TweetViewController: UIViewController {
                 as! UINavigationController
             let replyiewController = newTweetNavController.viewControllers[0] as! ReplyViewController
             
-            replyiewController.twitterAPIService = twitterAPIService
-            
             if let tweetForOp = tweet.retweetedStatus {
                 replyiewController.tweetToReply = tweetForOp
             }else{
                 replyiewController.tweetToReply = tweet
             }
-            
-            
         }
     }
     

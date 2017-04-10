@@ -17,6 +17,10 @@ import KeychainSwift
 class TwitterAPIService {
     
     
+    
+    static let sharedInstance = TwitterAPIService()
+    
+    
     //OAuth Info
     private let twitterConsumerKey = "NNBzsZMcVoSHNQOIoSvua72U2"
     private let twitterConsumerSecret = "v9G6EZiqAYxkiGSfRtx76KqHhFCw2zcwte1747qM1jqJUe1tHZ"

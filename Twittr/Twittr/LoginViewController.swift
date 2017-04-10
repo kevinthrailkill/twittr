@@ -11,11 +11,11 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    var twitterAPIService : TwitterAPIService!
+    let twitterAPIService = TwitterAPIService.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        twitterAPIService = TwitterAPIService()
+      //  twitterAPIService = TwitterAPIService()
         
     }
 
@@ -45,10 +45,10 @@ class LoginViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "loginSegue" {
-            let tweetsNavController = segue.destination
-                as! UINavigationController
-            let tweetsViewController = tweetsNavController.viewControllers[0] as! TweetsViewController
-            tweetsViewController.twitterAPIService = twitterAPIService
+//            let tweetsNavController = segue.destination
+//                as! UINavigationController
+//            let tweetsViewController = tweetsNavController.viewControllers[0] as! TweetsViewController
+           // tweetsViewController.twitterAPIService = twitterAPIService
         }
     }
 

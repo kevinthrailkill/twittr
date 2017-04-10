@@ -13,6 +13,7 @@ import OAuthSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -29,12 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let tweetsNavController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
             
-            let twitterApiService = TwitterAPIService()
-            twitterApiService.byPassLoginScreen()
+           // let twitterApiService = TwitterAPIService()
+            TwitterAPIService.sharedInstance.byPassLoginScreen()
             
-            let tweetsViewController = tweetsNavController.viewControllers[0] as! TweetsViewController
+          //  twitterApiService.byPassLoginScreen()
             
-            tweetsViewController.twitterAPIService = twitterApiService
+         //   let tweetsViewController = tweetsNavController.viewControllers[0] as! TweetsViewController
+            
+          //  tweetsViewController.twitterAPIService =
             
             window?.rootViewController = tweetsNavController
             
