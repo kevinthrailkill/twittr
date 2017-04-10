@@ -131,7 +131,7 @@ class TwitterAPIService {
         }
     }
     
-    func getHomeTimeline(maxID: UInt64?, completion: @escaping ([Tweet]?, Error?) -> ()){
+    func getHomeTimeline(maxID: String?, completion: @escaping ([Tweet]?, Error?) -> ()){
         
         var params: [String : AnyObject] = ["count" : 20 as AnyObject]
         
@@ -139,7 +139,7 @@ class TwitterAPIService {
             params["max_id"] = id as AnyObject
         }
         
-        sessionManager.request(getHomeTimelineURL, method: .get, parameters: params)
+        sessionManager.request(getHomeTimelineURL, method: .get, parameters: params, encoding: URLEncoding.queryString)
             .responseArray { (response: DataResponse<[Tweet]>) in
                 switch response.result {
                 case .success(let value):

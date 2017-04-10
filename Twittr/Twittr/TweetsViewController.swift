@@ -90,7 +90,7 @@ class TweetsViewController: UIViewController {
         getTweets(refreshing: true, maxID: nil)
     }
     
-    private func getTweets(refreshing : Bool, maxID: UInt64?) {
+    private func getTweets(refreshing : Bool, maxID: String?) {
         twitterAPIService.getHomeTimeline(maxID: maxID) {
             (tweets: [Tweet]?, error: Error?) in
             if let tweets = tweets {
@@ -142,7 +142,7 @@ class TweetsViewController: UIViewController {
     
     func loadMoreData() {
         
-        let maxID = tweetsArray[tweetsArray.endIndex-1].id
+        let maxID = tweetsArray[tweetsArray.endIndex-1].idStr
         
         getTweets(refreshing: true, maxID: maxID)
         
@@ -152,7 +152,7 @@ class TweetsViewController: UIViewController {
     
     deinit {
         print("Tweets view gone")
-        twitterAPIService = nil
+       // twitterAPIService = nil
     }
     
     @IBAction func onLogoutButton(_ sender: UIBarButtonItem) {
@@ -189,6 +189,7 @@ class TweetsViewController: UIViewController {
             replyiewController.twitterAPIService = twitterAPIService
             let tweetCell = tweetsTableView.cellForRow(at: indexPathToReload!) as! TweetBasicCell
             replyiewController.tweetToReply = tweetCell.tweetForOperations
+            replyiewController.delegate = self
             indexPathToReload = nil
         }
     }
@@ -221,7 +222,7 @@ extension TweetsViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension TweetsViewController : TweetCellDelegate, NewTweetDelegate {
+extension TweetsViewController : TweetCellDelegate, ComposeTweetDelegate {
     
     func reload(tweetCell: TweetCell, at indexPath: IndexPath ) {        
     }

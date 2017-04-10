@@ -17,6 +17,6 @@ protocol TweetCellDelegate: class {
     
 }
 
-protocol NewTweetDelegate : class {
+protocol ComposeTweetDelegate : class {
     func addNew(tweet: Tweet)
 }

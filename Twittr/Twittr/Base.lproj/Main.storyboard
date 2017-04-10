@@ -177,8 +177,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oUH-Iv-3IR">
-                                <rect key="frame" x="16" y="95" width="343" height="408"/>
+                                <rect key="frame" x="16" y="95" width="343" height="308"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
@@ -202,7 +203,7 @@
                             <constraint firstAttribute="trailing" secondItem="oUH-Iv-3IR" secondAttribute="trailing" constant="16" id="YI5-1Z-d5E"/>
                             <constraint firstItem="zwe-6Z-bve" firstAttribute="baseline" secondItem="EpJ-sM-MDW" secondAttribute="baseline" id="cyn-jh-pVo"/>
                             <constraint firstItem="DDb-Zc-MTv" firstAttribute="top" secondItem="3DY-eS-gjo" secondAttribute="bottom" constant="8" id="nsk-No-grX"/>
-                            <constraint firstItem="tuP-NO-UpE" firstAttribute="top" relation="lessThanOrEqual" secondItem="oUH-Iv-3IR" secondAttribute="bottom" constant="100" id="tFh-rY-C1u"/>
+                            <constraint firstItem="tuP-NO-UpE" firstAttribute="top" relation="lessThanOrEqual" secondItem="oUH-Iv-3IR" secondAttribute="bottom" constant="200" id="tFh-rY-C1u"/>
                             <constraint firstItem="zwe-6Z-bve" firstAttribute="leading" secondItem="r6o-2P-w6T" secondAttribute="leading" constant="16" id="v7t-6D-phr"/>
                             <constraint firstItem="EpJ-sM-MDW" firstAttribute="leading" secondItem="zwe-6Z-bve" secondAttribute="trailing" id="xAP-zH-6sY"/>
                         </constraints>
@@ -268,6 +269,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="271-MN-ONG">
                                 <rect key="frame" x="16" y="66" width="343" height="337"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>

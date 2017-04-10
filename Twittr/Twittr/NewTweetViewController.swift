@@ -14,8 +14,6 @@ class NewTweetViewController: ComposeViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
     
-    weak var delegate: NewTweetDelegate?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

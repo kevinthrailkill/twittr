@@ -19,6 +19,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     
     var twitterAPIService: TwitterAPIService!
     var maxtext: Int = 140
+    weak var delegate: ComposeTweetDelegate?
     
     
     override func viewDidLoad() {

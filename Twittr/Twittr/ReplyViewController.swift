@@ -57,6 +57,7 @@ class ReplyViewController: ComposeViewController {
             if let tweet = tweet {
                 print("reply success")
                 print(tweet)
+                self.delegate?.addNew(tweet: tweet)
                 self.dismiss(animated: true)
             }else{
                 print(error!.localizedDescription)
