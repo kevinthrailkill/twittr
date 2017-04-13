@@ -37,6 +37,7 @@ class TwitterAPIService {
     private var unFavoriteURL = "https://api.twitter.com/1.1/favorites/destroy.json"
     private var statusURL = "https://api.twitter.com/1.1/statuses/show/"
     private var updateStatusURL = "https://api.twitter.com/1.1/statuses/update.json"
+    private var getUserTimelineURL = "https://api.twitter.com/1.1/statuses/user_timeline.json"
     
     
     func byPassLoginScreen(){
@@ -248,4 +249,26 @@ class TwitterAPIService {
         }
         
     }
+    
+    func getUserTimeline(userID: Int, maxID: String?, completion: @escaping ([Tweet]?, Error?) -> ()) {
+        
+        var params: [String : AnyObject] = ["count" : 20 as AnyObject, "user_id" : userID as AnyObject]
+        
+        if let id = maxID {
+            params["max_id"] = id as AnyObject
+        }
+        
+        sessionManager.request(getUserTimelineURL, method: .get, parameters: params, encoding: URLEncoding.queryString)
+            .responseArray { (response: DataResponse<[Tweet]>) in
+                switch response.result {
+                case .success(let value):
+                    let tweets = value
+                    completion(tweets, nil)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion(nil, error)
+                }
+        }
+    }
+    
 }

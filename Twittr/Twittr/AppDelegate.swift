@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
+        
+        
         //UINavigationBar.appearance().backgroundColor = UIColor.greenColor()
         //UI
         UIBarButtonItem.appearance().tintColor = UIColor.white
@@ -35,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
           //  twitterApiService.byPassLoginScreen()
             
-         //   let tweetsViewController = tweetsNavController.viewControllers[0] as! TweetsViewController
+         //   let tweetsViewController = tweetsNavController.viewControllers[0] as! HomeViewController
             
           //  tweetsViewController.twitterAPIService =
             

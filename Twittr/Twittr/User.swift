@@ -16,6 +16,8 @@ class User : Unboxable {
     var screenName: String?
     var tagline: String?    
     var profileURL : URL?
+    var userID : Int
+    
     
     
     static var _currentUser: User?
@@ -66,6 +68,8 @@ class User : Unboxable {
             self.profileURL = URL(string: urlstring)
         }
         
+        self.userID = dictionary["userID"] as! Int
+        
     }
     
     
@@ -73,6 +77,7 @@ class User : Unboxable {
         self.name = unboxer.unbox(key: "name")
         self.screenName = unboxer.unbox(key: "screen_name")
         self.tagline = unboxer.unbox(key: "description")
+        self.userID = try unboxer.unbox(key: "id")
         
         let profileUrlString : String?  = unboxer.unbox(key: "profile_image_url_https")
         if let urlstring = profileUrlString {

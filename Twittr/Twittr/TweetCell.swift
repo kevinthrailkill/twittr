@@ -73,7 +73,23 @@ class TweetCell: UITableViewCell {
             fillInTweetCell()
             
         }
+        
+        let profileTap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageViewTapped))
+        profileImageView.addGestureRecognizer(profileTap)
+        
     }
+    
+    func handleProfileImageViewTapped(sender: UITapGestureRecognizer) {
+        // just prevents the cell selection from happening if you press the stack view
+        print("hit profile imageview")
+        
+        print("User id: \(tweetForOperations.tweetOwner!.userID)")
+        
+        self.delegate?.goToUserProfileFor(userID: tweetForOperations.tweetOwner!.userID)
+        
+        
+    }
+
     
     
     func fillInTweetCell() {

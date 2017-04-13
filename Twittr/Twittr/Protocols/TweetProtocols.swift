@@ -12,9 +12,8 @@ protocol TweetCellDelegate: class {
     
     func favorite(tweetID: String, shouldFavorite: Bool, indexPath: IndexPath)
     func retweet(tweetID: String, shouldRetweet: Bool, indexPath: IndexPath)
-    
     func reply(forCellAt indexPath: IndexPath)
-    
+    func goToUserProfileFor(userID: Int)
 }
 
 protocol ComposeTweetDelegate : class {

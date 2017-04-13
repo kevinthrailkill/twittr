@@ -31,7 +31,7 @@ class TweetBasicCell: TweetCell {
         buttonStackView.addGestureRecognizer(tap)
     }
     
-    func handleStackViewTap(sender: UITapGestureRecognizer? = nil) {
+    func handleStackViewTap(sender: UITapGestureRecognizer) {
         // just prevents the cell selection from happening if you press the stack view
     }
     

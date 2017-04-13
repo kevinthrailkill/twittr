@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
         if segue.identifier == "loginSegue" {
 //            let tweetsNavController = segue.destination
 //                as! UINavigationController
-//            let tweetsViewController = tweetsNavController.viewControllers[0] as! TweetsViewController
+//            let tweetsViewController = tweetsNavController.viewControllers[0] as! HomeViewController
            // tweetsViewController.twitterAPIService = twitterAPIService
         }
     }
