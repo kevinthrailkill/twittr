@@ -10,8 +10,8 @@ import Foundation
 import Unbox
 
 
+/// Tweet class to hold a tweet
 class Tweet: Unboxable {
-    
     
     var id: UInt64
     var idStr: String
@@ -69,6 +69,8 @@ class Tweet: Unboxable {
 }
 
 
+
+/// Entities class for the entities in a tweet
 class Entities: Unboxable {
     
     var mediaArray: [Media]?
@@ -81,6 +83,8 @@ class Entities: Unboxable {
     
 }
 
+
+/// Media class for media objects in a tweet
 class Media : Unboxable {
     
     var type: String?
@@ -98,6 +102,8 @@ class Media : Unboxable {
     }
 }
 
+
+/// Tweet Url type for url objects in twitter class
 class TweetURLType : Unboxable {
     
     var url : String?
@@ -112,6 +118,8 @@ class TweetURLType : Unboxable {
     }
 }
 
+
+/// Current user retweet class to get current user of retweet
 class CurrentUserRetweet : Unboxable {
     var id: UInt64?
     var id_str : String?

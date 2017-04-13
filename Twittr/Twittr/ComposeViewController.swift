@@ -8,16 +8,19 @@
 
 import UIKit
 
+
+/// Base compose class for tweet and reply
 class ComposeViewController: UIViewController, UITextViewDelegate {
 
-    
+    //outlets
     @IBOutlet weak var tweetCharacterCountBarButton: UIBarButtonItem!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var composeTextView: UITextView!
     @IBOutlet weak var sendButton: UIBarButtonItem!
     
-   // var twitterAPIService: TwitterAPIService!
+    
+    //vars
     let twitterAPIService = TwitterAPIService.sharedInstance
     var maxtext: Int = 140
     weak var delegate: ComposeTweetDelegate?
@@ -32,7 +35,6 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         
         configureComposeView()
         tweetCharacterCountBarButton.title = "\(maxtext)"
-
 
     }
     

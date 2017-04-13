@@ -5,6 +5,7 @@
 //  Created by Kevin Thrailkill on 4/5/17.
 //  Copyright © 2017 kevinthrailkill. All rights reserved.
 //
+// Tweets view contoller for home page
 
 import UIKit
 
@@ -15,17 +16,14 @@ enum IsLoadingMore: Int {
 
 class TweetsViewController: UIViewController {
 
-    
+    //outlets
     @IBOutlet weak var tweetsTableView: UITableView!
     
+    //vars
     let twitterAPIService = TwitterAPIService.sharedInstance
-    
     var tweetsArray: [Tweet] = []
     let refreshControl = UIRefreshControl()
     var indexPathToReload : IndexPath? = nil
-
-    
-    
     var isLoadingMoreData : IsLoadingMore = .notLoadingMoreData
     var loadingMoreView:InfiniteScrollActivityView?
     
@@ -91,6 +89,12 @@ class TweetsViewController: UIViewController {
         getTweets(refreshing: true, maxID: nil)
     }
     
+    
+    /// Gets the tweets by calling twitter api
+    ///
+    /// - Parameters:
+    ///   - refreshing: whether or not the view is refresshing
+    ///   - maxID: the id of the earliest tweet we have
     private func getTweets(refreshing : Bool, maxID: String?) {
         twitterAPIService.getHomeTimeline(maxID: maxID) {
             (tweets: [Tweet]?, error: Error?) in
@@ -141,23 +145,23 @@ class TweetsViewController: UIViewController {
     }
     
     
+    
+    /// Gets the older tweets in my timeline
     func loadMoreData() {
-        
         let maxID = tweetsArray[tweetsArray.endIndex-1].idStr
-        
         getTweets(refreshing: true, maxID: maxID)
-        
-        
     }
     
     
     deinit {
         print("Tweets view gone")
-       // twitterAPIService = nil
     }
     
+    
+    /// Logout of twitter
+    ///
+    /// - Parameter sender: <#sender description#>
     @IBAction func onLogoutButton(_ sender: UIBarButtonItem) {
-        
         twitterAPIService.logout()
     }
 
@@ -212,7 +216,6 @@ extension TweetsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         indexPathToReload = indexPath
-        
         self.performSegue(withIdentifier: "TweetPageSegue", sender: self)
         
     }
@@ -220,10 +223,13 @@ extension TweetsViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension TweetsViewController : TweetCellDelegate, ComposeTweetDelegate {
-    
-    func reload(tweetCell: TweetCell, at indexPath: IndexPath ) {        
-    }
-    
+
+    /// Favorite a tweet
+    ///
+    /// - Parameters:
+    ///   - tweetID: the tweet id of the favorite
+    ///   - shouldFavorite: whether or not you should favorite
+    ///   - indexPath: the location of the tweet in the table
     func favorite(tweetID: String, shouldFavorite: Bool, indexPath: IndexPath) {
         twitterAPIService.favorite(tweetID: tweetID, favorite: shouldFavorite) { (tweet, error) in
             if tweet != nil {
@@ -235,6 +241,12 @@ extension TweetsViewController : TweetCellDelegate, ComposeTweetDelegate {
         }
     }
     
+    /// Retweet a tweet
+    ///
+    /// - Parameters:
+    ///   - tweetID: the tweet id of the favorite
+    ///   - shouldRetweet: whether or not you should retweet
+    ///   - indexPath: the location of the tweet in the table
     func retweet(tweetID: String, shouldRetweet: Bool, indexPath: IndexPath) {
         twitterAPIService.reweet(tweetID: tweetID, retweet: shouldRetweet) { (tweet, error) in
             if tweet != nil {
@@ -246,12 +258,18 @@ extension TweetsViewController : TweetCellDelegate, ComposeTweetDelegate {
         }
     }
     
+    /// Displays the reply VC so a user can reply to a tweet
+    ///
+    /// - Parameter indexPath: the location of the tweet in the table
     func reply(forCellAt indexPath: IndexPath) {
         indexPathToReload = indexPath
         self.performSegue(withIdentifier: "ReplyFromHomeScreenSegue", sender: self)
     }
     
     
+    /// Adds the new tweet to table at top
+    ///
+    /// - Parameter tweet: the tweet to add
     func addNew(tweet: Tweet) {
         tweetsArray.insert(tweet, at: 0)
         tweetsTableView.reloadData()

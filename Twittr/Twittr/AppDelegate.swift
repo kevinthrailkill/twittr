@@ -17,28 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
-        
-        //UINavigationBar.appearance().backgroundColor = UIColor.greenColor()
-        //UI
         UIBarButtonItem.appearance().tintColor = UIColor.white
         
+        //If user, bypass login screen
         if User.currentUser != nil {
             print("there us a user")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
             let tweetsNavController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
             
-           // let twitterApiService = TwitterAPIService()
             TwitterAPIService.sharedInstance.byPassLoginScreen()
-            
-          //  twitterApiService.byPassLoginScreen()
-            
-         //   let tweetsViewController = tweetsNavController.viewControllers[0] as! TweetsViewController
-            
-          //  tweetsViewController.twitterAPIService =
-            
             window?.rootViewController = tweetsNavController
             
             
@@ -46,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("there is not a user")
         }
         
+        
+        //Observer for if the user logs out
         NotificationCenter.default.addObserver(forName: NSNotification.Name("UserDidLogout"), object: nil, queue: OperationQueue.main) { (NSNotification) ->
             Void in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

@@ -39,6 +39,9 @@ class TwitterAPIService {
     private var updateStatusURL = "https://api.twitter.com/1.1/statuses/update.json"
     
     
+    
+    
+    /// Function to bypass login screen and create oauth session with user credentials
     func byPassLoginScreen(){
         
         let oauthswift = OAuth1Swift(
@@ -61,6 +64,8 @@ class TwitterAPIService {
         
     }
     
+    
+    /// Logs the user out and clears the saved credentials
     func logout() {
         User.currentUser = nil
         let keychain = KeychainSwift()
@@ -72,6 +77,10 @@ class TwitterAPIService {
     }
     
     
+    
+    /// Logs you in with your twitter credentials and creates a oauth session
+    ///
+    /// - Parameter completion: on success moves you to the home page
     func loginToTwitter(completion: @escaping (Bool, Error?) -> ()){
         
         let oauthswift = OAuth1Swift(
@@ -121,6 +130,10 @@ class TwitterAPIService {
     }
     
     
+    
+    /// Gets the user from the twitter api
+    ///
+    /// - Parameter completion: if success, returns the user
     func getUser(completion: @escaping (User?, Error?) -> ()){
         sessionManager.request(verifyCredentialURL, method: .get)
             .responseObject { (response: DataResponse<User>) in
@@ -135,6 +148,13 @@ class TwitterAPIService {
         }
     }
     
+    
+    
+    /// Gets the Home Timeline for the user
+    ///
+    /// - Parameters:
+    ///   - maxID: The id of the last tweet that we have. Used to get older tweets
+    ///   - completion: if good, return tweets to display
     func getHomeTimeline(maxID: String?, completion: @escaping ([Tweet]?, Error?) -> ()){
         
         var params: [String : AnyObject] = ["count" : 20 as AnyObject]
@@ -156,6 +176,14 @@ class TwitterAPIService {
         }
     }
     
+    
+    
+    /// Retweets or unretweets a tweet
+    ///
+    /// - Parameters:
+    ///   - tweetID: the tweet id of the tweet
+    ///   - retweet: whether or not to retweet or unretweet
+    ///   - completion: on success, return the tweet that the action is performed on
     func reweet(tweetID: String, retweet: Bool, completion: @escaping (Tweet?, Error?) -> ()) {
         
         if !retweet {
@@ -201,6 +229,13 @@ class TwitterAPIService {
         }
     }
     
+    
+    /// Favorites or unfavorites a tweet
+    ///
+    /// - Parameters:
+    ///   - tweetID: the tweet id of the tweet
+    ///   - favorite: whether or not to favorite or not
+    ///   - completion: on success, return the tweet that the action is performed on
     func favorite(tweetID: String, favorite: Bool, completion: @escaping (Tweet?, Error?) -> ()) {
         
         let params = ["id" : tweetID]
@@ -226,11 +261,19 @@ class TwitterAPIService {
         }
     }
     
-    func publish(tweetBody: String, replyToStayusID: String?, completion: @escaping (Tweet?, Error?) -> ()) {
+    
+    
+    /// Publishes a new tweet
+    ///
+    /// - Parameters:
+    ///   - tweetBody: the tweet
+    ///   - replyToStayusID: if a reply, a reply id of the tweet
+    ///   - completion: returns the new tweet created
+    func publish(tweetBody: String, replyToStatusID: String?, completion: @escaping (Tweet?, Error?) -> ()) {
         
         var params = ["status" : tweetBody]
         
-        if let replyId = replyToStayusID {
+        if let replyId = replyToStatusID {
             params["in_reply_to_status_id"] = replyId
         }
         

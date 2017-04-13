@@ -24,6 +24,10 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    /// Logs a use in to twitter
+    ///
+    /// - Parameter sender: self
     @IBAction func loginToTwitter(_ sender: Any) {
         twitterAPIService.loginToTwitter() {
             (auth: Bool, error: Error?) in
@@ -32,8 +36,6 @@ class LoginViewController: UIViewController {
                 print("auth")
                 
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                
-                
                 
             }else{
                  print("not auth")
@@ -45,10 +47,6 @@ class LoginViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "loginSegue" {
-//            let tweetsNavController = segue.destination
-//                as! UINavigationController
-//            let tweetsViewController = tweetsNavController.viewControllers[0] as! TweetsViewController
-           // tweetsViewController.twitterAPIService = twitterAPIService
         }
     }
 

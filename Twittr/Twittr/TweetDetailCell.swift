@@ -5,10 +5,18 @@
 //  Created by Kevin Thrailkill on 4/7/17.
 //  Copyright © 2017 kevinthrailkill. All rights reserved.
 //
+// Detail tweet cell for expanded view
 
 import UIKit
 
 class TweetDetailCell: TweetCell {
+    
+    
+    override func configure() {
+        super.configure()
+        
+        timeLabel.text = tweetForOperations.timeStamp!.humanReadable.datetime
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

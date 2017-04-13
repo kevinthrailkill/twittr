@@ -5,6 +5,7 @@
 //  Created by Kevin Thrailkill on 4/6/17.
 //  Copyright © 2017 kevinthrailkill. All rights reserved.
 //
+// Basic Tweet Cell
 
 import UIKit
 
@@ -29,6 +30,8 @@ class TweetBasicCell: TweetCell {
         //prevents did select row from happening when selecting on stack view
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleStackViewTap))
         buttonStackView.addGestureRecognizer(tap)
+        
+        timeLabel.text = tweetForOperations.timeStamp!.ago
     }
     
     func handleStackViewTap(sender: UITapGestureRecognizer? = nil) {
