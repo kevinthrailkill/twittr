@@ -14,7 +14,6 @@ import UIKit
 class HomeViewController: ShowTweetsViewController {
 
 
-    var profileIdToGoTo : Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,18 +62,11 @@ class HomeViewController: ShowTweetsViewController {
     
     override func goToUserProfileFor(userID: Int) {
         profileIdToGoTo = userID
+        
         self.performSegue(withIdentifier: "ShowProfileSegue", sender: self)
     }
+    
 
-    
-    
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//        
-//        
-//        self.performSegue(withIdentifier: "TweetPageSegue", sender: self)
-//        
-//    }
     
     
     // MARK: - Navigation

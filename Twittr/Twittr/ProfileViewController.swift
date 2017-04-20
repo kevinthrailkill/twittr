@@ -49,15 +49,37 @@ class ProfileViewController: ShowTweetsViewController {
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func reply(forCellAt indexPath: IndexPath) {
+        indexPathToReload = indexPath
+        self.performSegue(withIdentifier: "ReplyFromProfileScreenSegue", sender: self)
     }
-    */
+    
+    override func goToUserProfileFor(userID: Int) {
+        
+        if userID != self.userID {
+        
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+            profileViewController.userID = userID
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+            
+        }
+        
+    }
+    
+    
+    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ReplyFromProfileScreenSegue" {
+            let newTweetNavController = segue.destination
+                as! UINavigationController
+            let replyiewController = newTweetNavController.viewControllers[0] as! ReplyViewController
+            let tweetCell = tweetsTableView.cellForRow(at: indexPathToReload!) as! TweetBasicCell
+            replyiewController.tweetToReply = tweetCell.tweetForOperations
+            //replyiewController.delegate = self
+            indexPathToReload = nil
+        }
+    }
 
 }

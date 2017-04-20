@@ -151,12 +151,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pyR-Dl-4A3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2354" y="283"/>
+            <point key="canvasLocation" x="2374" y="297"/>
         </scene>
-        <!--Profile View Controller-->
+        <!-- -->
         <scene sceneID="Ru0-0T-5s6">
             <objects>
-                <viewController id="ZGn-T8-iPm" customClass="ProfileViewController" customModule="Twittr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="ZGn-T8-iPm" customClass="ProfileViewController" customModule="Twittr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="078-eC-Vhc"/>
                         <viewControllerLayoutGuide type="bottom" id="PLM-t3-L9G"/>
@@ -182,13 +182,18 @@
                             <constraint firstItem="rgP-vM-Wzw" firstAttribute="leading" secondItem="VWd-yf-8Ci" secondAttribute="leading" id="nsy-xG-ysw"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title=" " id="X0m-zB-W4M">
+                        <barButtonItem key="backBarButtonItem" title=" " id="GK0-GS-eXS"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tweetsTableView" destination="rgP-vM-Wzw" id="GCk-KA-uv2"/>
+                        <segue destination="uha-Fq-yAB" kind="presentation" identifier="ReplyFromProfileScreenSegue" id="47Y-BR-qmd"/>
+                        <segue destination="b6E-Uy-C8w" kind="show" identifier="TweetPageFromProfileSegue" id="iU2-wf-BdL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXa-wB-7u1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3088.8000000000002" y="-291.00449775112446"/>
+            <point key="canvasLocation" x="3495" y="-100"/>
         </scene>
         <!--Reply View Controller-->
         <scene sceneID="XTd-sP-wxm">
@@ -426,7 +431,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="e4x-aC-CnO"/>
-        <segue reference="MBd-q7-w6V"/>
+        <segue reference="iU2-wf-BdL"/>
+        <segue reference="47Y-BR-qmd"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

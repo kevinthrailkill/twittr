@@ -18,6 +18,7 @@ class ShowTweetsViewController: UIViewController {
     var tweetsArray: [Tweet] = []
     let refreshControl = UIRefreshControl()
     var indexPathToReload : IndexPath? = nil
+    var profileIdToGoTo : Int?
 
     var isLoadingMoreData : IsLoadingMore = .notLoadingMoreData
     var loadingMoreView:InfiniteScrollActivityView?
