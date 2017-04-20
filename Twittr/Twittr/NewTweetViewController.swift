@@ -10,6 +10,7 @@ import UIKit
 
 
 
+/// Class to compose a new tweet
 class NewTweetViewController: ComposeViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
@@ -42,10 +43,12 @@ class NewTweetViewController: ComposeViewController {
         
     }
     
+    
+    /// Sends out a new tweet to be displayed
     override func sendOutTweet() {
         super.sendOutTweet()
         
-        twitterAPIService.publish(tweetBody: composeTextView.text, replyToStayusID: nil) { (tweet, error) in
+        twitterAPIService.publish(tweetBody: composeTextView.text, replyToStatusID: nil) { (tweet, error) in
             if let tweet = tweet {
                 print("sucess")
                 print(tweet)

@@ -69,10 +69,6 @@ let colors = [
     DotColors(first: color(0xF68FA7), second: color(0xF6A2B8))
 ]
 
-
-
-//Mark: Date formatting code from https://github.com/tejen/codepath-twitter
-
 public struct humanReadableDate {
     fileprivate var base: Date
     

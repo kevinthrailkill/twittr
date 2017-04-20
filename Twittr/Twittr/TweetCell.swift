@@ -5,14 +5,18 @@
 //  Created by Kevin Thrailkill on 4/8/17.
 //  Copyright © 2017 kevinthrailkill. All rights reserved.
 //
+// Generic Tweet cell that all other tweet cells extend
+
 
 import UIKit
 import FaveButton
 import AFNetworking
 
+
 class TweetCell: UITableViewCell {
 
 
+    //outlets
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
@@ -55,6 +59,7 @@ class TweetCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    //configures the tweet cell
     func configure(){
         
         // if its a retweet, then grab retweeted status
@@ -64,35 +69,17 @@ class TweetCell: UITableViewCell {
             retweetUsernameLabel.isHidden = false
             retweetHeightConstraint.constant = 12
             tweetForOperations = retweetedStatus
-            fillInTweetCell()
         }else{
             retweetImageView.isHidden = true
             retweetUsernameLabel.isHidden = true
             retweetHeightConstraint.constant = 0
             tweetForOperations = tweet
-            fillInTweetCell()
             
         }
         
         let profileTap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageViewTapped))
         profileImageView.addGestureRecognizer(profileTap)
         
-    }
-    
-    func handleProfileImageViewTapped(sender: UITapGestureRecognizer) {
-        // just prevents the cell selection from happening if you press the stack view
-        print("hit profile imageview")
-        
-        print("User id: \(tweetForOperations.tweetOwner!.userID)")
-        
-        self.delegate?.goToUserProfileFor(userID: tweetForOperations.tweetOwner!.userID)
-        
-        
-    }
-
-    
-    
-    func fillInTweetCell() {
         
         if let owner = tweetForOperations.tweetOwner {
             nameLabel.text = owner.name
@@ -107,7 +94,7 @@ class TweetCell: UITableViewCell {
         }
         
         tweetTextLabel.text = tweetForOperations.text
-        timeLabel.text = tweetForOperations.timeStamp!.ago
+        
         
         if tweetForOperations.retweetCount == 0 {
             retweetCountLabel.text = ""
@@ -133,11 +120,24 @@ class TweetCell: UITableViewCell {
             configureUrl(urlArray: tweetUrls)
         }
         
-        
     }
     
-    //need to figure out what to do with these urls,
-    //currently just hiding
+    func handleProfileImageViewTapped(sender: UITapGestureRecognizer) {
+        // just prevents the cell selection from happening if you press the stack view
+        print("hit profile imageview")
+        
+        print("User id: \(tweetForOperations.tweetOwner!.userID)")
+        
+        self.delegate?.goToUserProfileFor(userID: tweetForOperations.tweetOwner!.userID)
+        
+        
+    }
+
+    
+    
+    
+    
+    //currently just removing the urls from the tweet display
     func configureUrl(urlArray: [TweetURLType]) {
         for url in urlArray {
             print(url.displayUrl!)
@@ -146,27 +146,20 @@ class TweetCell: UITableViewCell {
         }
     }
     
-    
+    //currently just removing the media urls from the tweet display
     func configureMedia(mediaArray: [Media]) {
         for media in mediaArray {
             tweetTextLabel.text = tweetTextLabel.text?.replacingOccurrences(of: media.urlInTweet!, with: "")
             if(media.type! == "photo") {
-                //                tweetMediaImageView.isHidden = false
-                //                mediaImageViewHeightContraint.constant = 100
-                //                tweetMediaImageView.layer.cornerRadius = 5
-                //                tweetMediaImageView.clipsToBounds = true
-                //
-                //
-                //                tweetMediaImageView.setImageWith(URLRequest(url:media.mediaURLHTTPS!), placeholderImage: nil, success: { (imageRequest, imageResponse, image) in
-                //                    self.tweetMediaImageView.image = image
-                //                    self.delegate?.reload(tweetCell: self, at: self.indexPath)
-                //                }, failure: { (imageRequest, imageResponse, error) in
-                //                    print(error.localizedDescription)
-                //                })
             }
         }
     }
     
+    
+    
+    /// If a fave button is pressesd, the according methods are called depending if its a reply, retweet, or favorite
+    ///
+    /// - Parameter sender: self
     @IBAction func faveButtonPressed(_ sender: FaveButton) {
         
         if sender === favoriteButton {

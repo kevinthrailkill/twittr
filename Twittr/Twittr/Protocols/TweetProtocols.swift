@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/// Protocol for performing tweet actions from cell
 protocol TweetCellDelegate: class {
     
     func favorite(tweetID: String, shouldFavorite: Bool, indexPath: IndexPath)
@@ -16,6 +18,8 @@ protocol TweetCellDelegate: class {
     func goToUserProfileFor(userID: Int)
 }
 
+
+/// Compose tweet cell protocol for adding a new tweet to table
 protocol ComposeTweetDelegate : class {
     func addNew(tweet: Tweet)
 }

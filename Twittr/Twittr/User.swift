@@ -10,6 +10,9 @@ import Foundation
 import Unbox
 import Wrap
 
+
+
+/// User Class for a twitter user
 class User : Unboxable {
     
     var name: String?

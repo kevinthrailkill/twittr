@@ -49,11 +49,7 @@ class HomeViewController: ShowTweetsViewController {
             }
         }
     }
-    
-    @IBAction func onLogoutButton(_ sender: UIBarButtonItem) {
-        
-        twitterAPIService.logout()
-    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

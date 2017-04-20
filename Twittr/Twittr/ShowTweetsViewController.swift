@@ -5,6 +5,7 @@
 //  Created by Kevin Thrailkill on 4/10/17.
 //  Copyright © 2017 kevinthrailkill. All rights reserved.
 //
+// Tweets view contoller for home page
 
 import UIKit
 
@@ -12,13 +13,12 @@ class ShowTweetsViewController: UIViewController {
 
     @IBOutlet weak var tweetsTableView: UITableView!
     
+    //vars
     let twitterAPIService = TwitterAPIService.sharedInstance
-    
     var tweetsArray: [Tweet] = []
     let refreshControl = UIRefreshControl()
     var indexPathToReload : IndexPath? = nil
-    
-    
+
     var isLoadingMoreData : IsLoadingMore = .notLoadingMoreData
     var loadingMoreView:InfiniteScrollActivityView?
     
@@ -84,8 +84,37 @@ class ShowTweetsViewController: UIViewController {
         getTweets(refreshing: true, maxID: nil)
     }
     
+    
+
+    
+    /// Gets the tweets by calling twitter api
+    ///
+    /// - Parameters:
+    ///   - refreshing: whether or not the view is refresshing
+    ///   - maxID: the id of the earliest tweet we have
     func getTweets(refreshing : Bool, maxID: String?) {
-        
+        twitterAPIService.getHomeTimeline(maxID: maxID) {
+            (tweets: [Tweet]?, error: Error?) in
+            if let tweets = tweets {
+                print(tweets)
+                if self.isLoadingMoreData == .loadingMoreData {
+                    self.isLoadingMoreData = .notLoadingMoreData
+                    self.loadingMoreView!.stopAnimating()
+                    //removes the first element of the returned array as it is repeated
+                    var tweetsWithoutFirst = tweets
+                    tweetsWithoutFirst.remove(at: 0)
+                    self.tweetsArray.append(contentsOf: tweetsWithoutFirst)
+                }else{
+                    self.tweetsArray = tweets
+                    if refreshing {
+                        self.refreshControl.endRefreshing()
+                    }
+                }
+                self.tweetsTableView.reloadData()
+            }else{
+                print(error!.localizedDescription)
+            }
+        }
     }
     
     
@@ -113,13 +142,23 @@ class ShowTweetsViewController: UIViewController {
     }
     
     
+    
+    /// Gets the older tweets in my timeline
     func loadMoreData() {
-        
         let maxID = tweetsArray[tweetsArray.endIndex-1].idStr
-        
         getTweets(refreshing: true, maxID: maxID)
-        
-        
+    }
+
+    deinit {
+        print("Tweets view gone")
+    }
+    
+    
+    /// Logout of twitter
+    ///
+    /// - Parameter sender: <#sender description#>
+    @IBAction func onLogoutButton(_ sender: UIBarButtonItem) {
+        twitterAPIService.logout()
     }
 
     
@@ -163,7 +202,6 @@ extension ShowTweetsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         indexPathToReload = indexPath
-        
         self.performSegue(withIdentifier: "TweetPageSegue", sender: self)
         
     }
@@ -171,9 +209,14 @@ extension ShowTweetsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ShowTweetsViewController : TweetCellDelegate, ComposeTweetDelegate {
     
-    func reload(tweetCell: TweetCell, at indexPath: IndexPath ) {
-    }
     
+
+    /// Favorite a tweet
+    ///
+    /// - Parameters:
+    ///   - tweetID: the tweet id of the favorite
+    ///   - shouldFavorite: whether or not you should favorite
+    ///   - indexPath: the location of the tweet in the table
     func favorite(tweetID: String, shouldFavorite: Bool, indexPath: IndexPath) {
         twitterAPIService.favorite(tweetID: tweetID, favorite: shouldFavorite) { (tweet, error) in
             if tweet != nil {
@@ -185,6 +228,12 @@ extension ShowTweetsViewController : TweetCellDelegate, ComposeTweetDelegate {
         }
     }
     
+    /// Retweet a tweet
+    ///
+    /// - Parameters:
+    ///   - tweetID: the tweet id of the favorite
+    ///   - shouldRetweet: whether or not you should retweet
+    ///   - indexPath: the location of the tweet in the table
     func retweet(tweetID: String, shouldRetweet: Bool, indexPath: IndexPath) {
         twitterAPIService.reweet(tweetID: tweetID, retweet: shouldRetweet) { (tweet, error) in
             if tweet != nil {
@@ -196,6 +245,9 @@ extension ShowTweetsViewController : TweetCellDelegate, ComposeTweetDelegate {
         }
     }
     
+    /// Displays the reply VC so a user can reply to a tweet
+    ///
+    /// - Parameter indexPath: the location of the tweet in the table
     func reply(forCellAt indexPath: IndexPath) {
         
     }
@@ -204,6 +256,9 @@ extension ShowTweetsViewController : TweetCellDelegate, ComposeTweetDelegate {
         
     }
     
+    /// Adds the new tweet to table at top
+    ///
+    /// - Parameter tweet: the tweet to add
     func addNew(tweet: Tweet) {
         tweetsArray.insert(tweet, at: 0)
         tweetsTableView.reloadData()

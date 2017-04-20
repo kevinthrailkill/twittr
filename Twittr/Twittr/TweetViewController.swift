@@ -8,13 +8,14 @@
 
 import UIKit
 
-class TweetViewController: UIViewController {
 
-    let twitterAPIService = TwitterAPIService.sharedInstance
-    var tweet : Tweet!
+/// Class for when a user clicks on a tweet
+class TweetViewController: UIViewController {
     
     @IBOutlet weak var tweetTableView: UITableView!
     
+    let twitterAPIService = TwitterAPIService.sharedInstance
+    var tweet : Tweet!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +94,13 @@ extension TweetViewController : TweetCellDelegate {
 
     
     
+    
+    /// Favorite a tweet
+    ///
+    /// - Parameters:
+    ///   - tweetID: the tweet id of the favorite
+    ///   - shouldFavorite: whether or not you should favorite
+    ///   - indexPath: the location of the tweet in the table
     func favorite(tweetID: String, shouldFavorite: Bool, indexPath: IndexPath) {
         twitterAPIService.favorite(tweetID: tweetID, favorite: shouldFavorite) { (tweet, error) in
             if tweet != nil {
@@ -104,6 +112,13 @@ extension TweetViewController : TweetCellDelegate {
         }
     }
     
+    
+    /// Retweet a tweet
+    ///
+    /// - Parameters:
+    ///   - tweetID: the tweet id of the favorite
+    ///   - shouldRetweet: whether or not you should retweet
+    ///   - indexPath: the location of the tweet in the table
     func retweet(tweetID: String, shouldRetweet: Bool, indexPath: IndexPath) {
         twitterAPIService.reweet(tweetID: tweetID, retweet: shouldRetweet) { (tweet, error) in
             if tweet != nil {
@@ -116,6 +131,10 @@ extension TweetViewController : TweetCellDelegate {
         }
     }
     
+    
+    /// Displays the reply VC so a user can reply to a tweet
+    ///
+    /// - Parameter indexPath: the location of the tweet in the table
     func reply(forCellAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "ReplySegue", sender: self)
     }

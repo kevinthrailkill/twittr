@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+/// Class for a tweet to be replyed to
 class ReplyViewController: ComposeViewController {
 
     var tweetToReply: Tweet?
@@ -47,13 +49,15 @@ class ReplyViewController: ComposeViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    /// Sends out a reply tweet
     override func sendOutTweet() {
         
         super.sendOutTweet()
         
         let tweetText = screenNameLabel.text! + " " + composeTextView.text
         
-        twitterAPIService.publish(tweetBody: tweetText, replyToStayusID: tweetToReply!.idStr) { (tweet, error) in
+        twitterAPIService.publish(tweetBody: tweetText, replyToStatusID: tweetToReply!.idStr) { (tweet, error) in
             if let tweet = tweet {
                 print("reply success")
                 print(tweet)
