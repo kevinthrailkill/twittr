@@ -11,6 +11,11 @@ import UIKit
 import FaveButton
 
 
+enum IsLoadingMore: Int {
+    case loadingMoreData, notLoadingMoreData
+}
+
+
 class InfiniteScrollActivityView: UIView {
     var activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
     static let defaultHeight:CGFloat = 60.0

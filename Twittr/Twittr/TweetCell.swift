@@ -77,6 +77,9 @@ class TweetCell: UITableViewCell {
             
         }
         
+        let profileTap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageViewTapped))
+        profileImageView.addGestureRecognizer(profileTap)
+        
         
         if let owner = tweetForOperations.tweetOwner {
             nameLabel.text = owner.name
@@ -117,9 +120,21 @@ class TweetCell: UITableViewCell {
             configureUrl(urlArray: tweetUrls)
         }
         
+    }
+    
+    func handleProfileImageViewTapped(sender: UITapGestureRecognizer) {
+        // just prevents the cell selection from happening if you press the stack view
+        print("hit profile imageview")
+        
+        print("User id: \(tweetForOperations.tweetOwner!.userID)")
+        
+        self.delegate?.goToUserProfileFor(userID: tweetForOperations.tweetOwner!.userID)
         
         
     }
+
+    
+    
     
     
     //currently just removing the urls from the tweet display

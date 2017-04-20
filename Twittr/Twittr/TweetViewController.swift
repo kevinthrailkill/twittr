@@ -87,6 +87,12 @@ extension TweetViewController : UITableViewDelegate, UITableViewDataSource {
 
 extension TweetViewController : TweetCellDelegate {
     
+
+    func goToUserProfileFor(userID: Int) {
+        
+    }
+
+    
     
     
     /// Favorite a tweet

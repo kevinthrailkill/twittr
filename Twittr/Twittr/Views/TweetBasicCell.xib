@@ -34,7 +34,7 @@
                         <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ii-0J-zYJ">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ii-0J-zYJ">
                         <rect key="frame" x="8" y="18" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="3Ta-Gv-WUX"/>

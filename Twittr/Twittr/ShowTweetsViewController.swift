@@ -1,22 +1,16 @@
 //
-//  TweetsViewController.swift
+//  ShowTweetsViewController.swift
 //  Twittr
 //
-//  Created by Kevin Thrailkill on 4/5/17.
+//  Created by Kevin Thrailkill on 4/10/17.
 //  Copyright © 2017 kevinthrailkill. All rights reserved.
 //
 // Tweets view contoller for home page
 
 import UIKit
 
+class ShowTweetsViewController: UIViewController {
 
-enum IsLoadingMore: Int {
-    case loadingMoreData, notLoadingMoreData
-}
-
-class TweetsViewController: UIViewController {
-
-    //outlets
     @IBOutlet weak var tweetsTableView: UITableView!
     
     //vars
@@ -24,6 +18,7 @@ class TweetsViewController: UIViewController {
     var tweetsArray: [Tweet] = []
     let refreshControl = UIRefreshControl()
     var indexPathToReload : IndexPath? = nil
+
     var isLoadingMoreData : IsLoadingMore = .notLoadingMoreData
     var loadingMoreView:InfiniteScrollActivityView?
     
@@ -33,7 +28,7 @@ class TweetsViewController: UIViewController {
         
         let image = UIImage(named: "twittericon.png")
         self.navigationItem.titleView = UIImageView(image: image)
-
+        
         
         //load xib file
         let nib = UINib(nibName: "TweetBasicCell", bundle: nil)
@@ -60,8 +55,8 @@ class TweetsViewController: UIViewController {
         var insets = tweetsTableView.contentInset
         insets.bottom += InfiniteScrollActivityView.defaultHeight
         tweetsTableView.contentInset = insets
-
-
+        
+        
     }
     
     
@@ -90,12 +85,14 @@ class TweetsViewController: UIViewController {
     }
     
     
+
+    
     /// Gets the tweets by calling twitter api
     ///
     /// - Parameters:
     ///   - refreshing: whether or not the view is refresshing
     ///   - maxID: the id of the earliest tweet we have
-    private func getTweets(refreshing : Bool, maxID: String?) {
+    func getTweets(refreshing : Bool, maxID: String?) {
         twitterAPIService.getHomeTimeline(maxID: maxID) {
             (tweets: [Tweet]?, error: Error?) in
             if let tweets = tweets {
@@ -139,7 +136,7 @@ class TweetsViewController: UIViewController {
                 loadingMoreView!.startAnimating()
                 
                 // Code to load more results
-                loadMoreData()		
+                loadMoreData()
             }
         }
     }
@@ -151,8 +148,7 @@ class TweetsViewController: UIViewController {
         let maxID = tweetsArray[tweetsArray.endIndex-1].idStr
         getTweets(refreshing: true, maxID: maxID)
     }
-    
-    
+
     deinit {
         print("Tweets view gone")
     }
@@ -165,39 +161,27 @@ class TweetsViewController: UIViewController {
         twitterAPIService.logout()
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     
+
+    /*
     // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "NewTweetSegue" {
-            let newTweetNavController = segue.destination
-                as! UINavigationController
-            let newTweetViewController = newTweetNavController.viewControllers[0] as! NewTweetViewController
-            newTweetViewController.delegate = self
-        } else if segue.identifier == "TweetPageSegue" {
-            let tweetController = segue.destination as! TweetViewController
-            let tweetCell = tweetsTableView.cellForRow(at: indexPathToReload!) as! TweetBasicCell
-            tweetController.tweet = tweetCell.tweet
-        }else if segue.identifier == "ReplyFromHomeScreenSegue" {
-            let newTweetNavController = segue.destination
-                as! UINavigationController
-            let replyiewController = newTweetNavController.viewControllers[0] as! ReplyViewController
-            let tweetCell = tweetsTableView.cellForRow(at: indexPathToReload!) as! TweetBasicCell
-            replyiewController.tweetToReply = tweetCell.tweetForOperations
-            replyiewController.delegate = self
-            indexPathToReload = nil
-        }
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
+    */
+
 }
 
-
-extension TweetsViewController: UITableViewDelegate, UITableViewDataSource {
+extension ShowTweetsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweetsArray.count
@@ -213,16 +197,19 @@ extension TweetsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    
+    //for profile view change
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         indexPathToReload = indexPath
         self.performSegue(withIdentifier: "TweetPageSegue", sender: self)
         
     }
-    
 }
 
-extension TweetsViewController : TweetCellDelegate, ComposeTweetDelegate {
+extension ShowTweetsViewController : TweetCellDelegate, ComposeTweetDelegate {
+    
+    
 
     /// Favorite a tweet
     ///
@@ -262,10 +249,12 @@ extension TweetsViewController : TweetCellDelegate, ComposeTweetDelegate {
     ///
     /// - Parameter indexPath: the location of the tweet in the table
     func reply(forCellAt indexPath: IndexPath) {
-        indexPathToReload = indexPath
-        self.performSegue(withIdentifier: "ReplyFromHomeScreenSegue", sender: self)
+        
     }
     
+    func goToUserProfileFor(userID: Int) {
+        
+    }
     
     /// Adds the new tweet to table at top
     ///

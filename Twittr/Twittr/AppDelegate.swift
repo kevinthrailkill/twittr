@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+
         UIBarButtonItem.appearance().tintColor = UIColor.white
         
         //If user, bypass login screen
@@ -28,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let tweetsNavController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
             
             TwitterAPIService.sharedInstance.byPassLoginScreen()
+
             window?.rootViewController = tweetsNavController
             
             
