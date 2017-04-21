@@ -26,11 +26,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("there us a user")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            let tweetsNavController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
+            let hamburgerController = storyboard.instantiateViewController(withIdentifier: "HamburgerVC") as! HamburgerViewController
+            
+            let menuVC = storyboard.instantiateViewController(withIdentifier: "MenuVC") as! MenuViewController
+            
+            menuVC.hamburgerViewController = hamburgerController
+            hamburgerController.menuVC = menuVC
             
             TwitterAPIService.sharedInstance.byPassLoginScreen()
 
-            window?.rootViewController = tweetsNavController
+            window?.rootViewController = hamburgerController
             
             
         }else{

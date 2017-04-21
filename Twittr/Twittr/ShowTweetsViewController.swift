@@ -27,8 +27,7 @@ class ShowTweetsViewController: UIViewController {
         super.viewDidLoad()
         
         
-        let image = UIImage(named: "twittericon.png")
-        self.navigationItem.titleView = UIImageView(image: image)
+        
         
         
         //load xib file
