@@ -11,12 +11,36 @@ import UIKit
 class ProfileViewController: ShowTweetsViewController {
 
     var userID : Int?
+    var userToDisplay: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
+        getUser { (shouldGetTweets) in
+            if shouldGetTweets {
+                //self.tweetsTableView.reloadData()
+                self.getTweets(refreshing: false, maxID: nil)
+            }
+        }
+        
+
         // Do any additional setup after loading the view.
     }
+    
+    func getUser(completion: @escaping (Bool) -> ()){
+        twitterAPIService.getUserBYID(userID: userID!) { (user, error) in
+            if let user = user {
+                self.userToDisplay = user
+                completion(true)
+            }else{
+                print(error!.localizedDescription)
+                completion(false)
+            }
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -25,6 +49,9 @@ class ProfileViewController: ShowTweetsViewController {
     
     
     override func getTweets(refreshing : Bool, maxID: String?) {
+        
+        
+        
         twitterAPIService.getUserTimeline(userID: userID!, maxID: maxID) {
             (tweets: [Tweet]?, error: Error?) in
             if let tweets = tweets {
@@ -67,6 +94,25 @@ class ProfileViewController: ShowTweetsViewController {
         
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let profileHeader = tweetsTableView.dequeueReusableCell(withIdentifier: "ProfileHeaderCell") as! ProfileHeaderCell
+        
+        profileHeader.user = userToDisplay
+        
+        return profileHeader
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if userToDisplay == nil {
+            return 0
+        }
+        
+        return 202
+    }
+    
+    
     
     
 
@@ -79,6 +125,8 @@ class ProfileViewController: ShowTweetsViewController {
             replyiewController.tweetToReply = tweetCell.tweetForOperations
             //replyiewController.delegate = self
             indexPathToReload = nil
+        } else if segue.identifier == "NewTweetFromProfileSegue" {
+            
         }
     }
 

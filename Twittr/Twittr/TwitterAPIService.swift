@@ -39,6 +39,7 @@ class TwitterAPIService {
     private var updateStatusURL = "https://api.twitter.com/1.1/statuses/update.json"
     private var getUserTimelineURL = "https://api.twitter.com/1.1/statuses/user_timeline.json"
     private var getMentionsTimelineURL = "https://api.twitter.com/1.1/statuses/mentions_timeline.json"
+    private var getUserFromIDURL = "https://api.twitter.com/1.1/users/show.json"
     
     
     
@@ -316,6 +317,11 @@ class TwitterAPIService {
     }
     
     
+    /// Gets the user mentionspage
+    ///
+    /// - Parameters:
+    ///   - maxID: The id of the last tweet that we have. Used to get older tweets
+    ///   - completion: if good, return tweets to display
     func getMentionsTimeline(maxID: String?, completion: @escaping ([Tweet]?, Error?) -> ()){
         
         var params: [String : AnyObject] = ["count" : 20 as AnyObject]
@@ -335,6 +341,23 @@ class TwitterAPIService {
                     completion(nil, error)
                 }
         }
+    }
+    
+    func getUserBYID(userID: Int, completion: @escaping (User?, Error?) -> ()) {
+        let params: [String : AnyObject] = ["user_id" : userID as AnyObject]
+        
+        sessionManager.request(getUserFromIDURL, method: .get, parameters: params, encoding: URLEncoding.queryString)
+            .responseObject { (response: DataResponse<User>) in
+                switch response.result {
+                case .success(let value):
+                    let user = value
+                    completion(user, nil)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion(nil, error)
+                }
+        }
+        
     }
     
     

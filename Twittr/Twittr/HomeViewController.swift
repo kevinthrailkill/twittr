@@ -17,6 +17,9 @@ class HomeViewController: ShowTweetsViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getTweets(refreshing: false, maxID: nil)
+
     }
     
     

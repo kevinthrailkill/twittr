@@ -32,14 +32,19 @@ class ShowTweetsViewController: UIViewController {
         
         
         //load xib file
-        let nib = UINib(nibName: "TweetBasicCell", bundle: nil)
+        var nib = UINib(nibName: "TweetBasicCell", bundle: nil)
         tweetsTableView.register(nib, forCellReuseIdentifier: "TweetBasicCell")
+        
+        //load xib file
+        nib = UINib(nibName: "ProfileHeaderCell", bundle: nil)
+        tweetsTableView.register(nib, forCellReuseIdentifier: "ProfileHeaderCell")
+
+        
+        
         
         tweetsTableView.rowHeight = UITableViewAutomaticDimension
         tweetsTableView.estimatedRowHeight = 90
         
-        
-        getTweets(refreshing: false, maxID: nil)
         
         
         
