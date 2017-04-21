@@ -20,6 +20,10 @@ class User : Unboxable {
     var tagline: String?    
     var profileURL : URL?
     var userID : Int
+    var followerCount: Int?
+    var friendsCount: Int?
+    var tweetCount: Int?
+    var profileBannerURL: URL?
     
     
     
@@ -81,12 +85,24 @@ class User : Unboxable {
         self.screenName = unboxer.unbox(key: "screen_name")
         self.tagline = unboxer.unbox(key: "description")
         self.userID = try unboxer.unbox(key: "id")
+        self.followerCount = unboxer.unbox(key: "followers_count")
+        self.friendsCount = unboxer.unbox(key: "friends_count")
+        self.tweetCount = unboxer.unbox(key: "statuses_count")
+        
         
         let profileUrlString : String?  = unboxer.unbox(key: "profile_image_url_https")
         if let urlstring = profileUrlString {
             self.profileURL = URL(string: urlstring.replacingOccurrences(of: "normal.jpg", with: "bigger.jpg"))
             
         }
+        
+        let profileBannerUrlString : String?  = unboxer.unbox(key: "profile_banner_url")
+        if let urlstring = profileBannerUrlString {
+            self.profileBannerURL = URL(string: urlstring + "/600x200")
+            
+        }
+        
+        
     }
 }
 

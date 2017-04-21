@@ -21,6 +21,8 @@
 		190DFB761E995BF10098FAC0 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190DFB751E995BF10098FAC0 /* TweetCell.swift */; };
 		190DFB791E9C0DE70098FAC0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190DFB781E9C0DE70098FAC0 /* ProfileViewController.swift */; };
 		190DFB7B1E9C30D30098FAC0 /* ShowTweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190DFB7A1E9C30D30098FAC0 /* ShowTweetsViewController.swift */; };
+		190DFBC51EAA6B370098FAC0 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190DFBC31EAA6B370098FAC0 /* ProfileHeaderCell.swift */; };
+		190DFBC61EAA6B370098FAC0 /* ProfileHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190DFBC41EAA6B370098FAC0 /* ProfileHeaderCell.xib */; };
 		1916B4D81E9492CB004E7C3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1916B4D71E9492CB004E7C3A /* AppDelegate.swift */; };
 		1916B4DA1E9492CB004E7C3A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1916B4D91E9492CB004E7C3A /* LoginViewController.swift */; };
 		1916B4DD1E9492CB004E7C3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1916B4DB1E9492CB004E7C3A /* Main.storyboard */; };
@@ -47,6 +49,8 @@
 		190DFB751E995BF10098FAC0 /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		190DFB781E9C0DE70098FAC0 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		190DFB7A1E9C30D30098FAC0 /* ShowTweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTweetsViewController.swift; sourceTree = "<group>"; };
+		190DFBC31EAA6B370098FAC0 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
+		190DFBC41EAA6B370098FAC0 /* ProfileHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileHeaderCell.xib; sourceTree = "<group>"; };
 		1916B4D41E9492CB004E7C3A /* Twittr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twittr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1916B4D71E9492CB004E7C3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1916B4D91E9492CB004E7C3A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				190DFB5D1E96DE1A0098FAC0 /* TweetBasicCell.xib */,
 				190DFB6A1E9887550098FAC0 /* TweetDetailCell.swift */,
 				190DFB6B1E9887550098FAC0 /* TweetDetailCell.xib */,
+				190DFBC31EAA6B370098FAC0 /* ProfileHeaderCell.swift */,
+				190DFBC41EAA6B370098FAC0 /* ProfileHeaderCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -266,6 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				190DFBC61EAA6B370098FAC0 /* ProfileHeaderCell.xib in Resources */,
 				1916B4E21E9492CB004E7C3A /* LaunchScreen.storyboard in Resources */,
 				1916B4DF1E9492CB004E7C3A /* Assets.xcassets in Resources */,
 				1916B4DD1E9492CB004E7C3A /* Main.storyboard in Resources */,
@@ -341,6 +348,7 @@
 				1916B4EB1E949482004E7C3A /* TwitterAPIService.swift in Sources */,
 				190DFB761E995BF10098FAC0 /* TweetCell.swift in Sources */,
 				1916B4DA1E9492CB004E7C3A /* LoginViewController.swift in Sources */,
+				190DFBC51EAA6B370098FAC0 /* ProfileHeaderCell.swift in Sources */,
 				190DFB6F1E98888C0098FAC0 /* TweetViewController.swift in Sources */,
 				190DFB651E9821220098FAC0 /* HelperClassesAndFunctions.swift in Sources */,
 				1916B4D81E9492CB004E7C3A /* AppDelegate.swift in Sources */,

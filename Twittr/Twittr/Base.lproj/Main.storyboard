@@ -151,12 +151,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pyR-Dl-4A3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2354" y="283"/>
+            <point key="canvasLocation" x="2374" y="297"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="Ru0-0T-5s6">
             <objects>
-                <viewController id="ZGn-T8-iPm" customClass="ProfileViewController" customModule="Twittr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="ZGn-T8-iPm" customClass="ProfileViewController" customModule="Twittr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="078-eC-Vhc"/>
                         <viewControllerLayoutGuide type="bottom" id="PLM-t3-L9G"/>
@@ -182,13 +182,22 @@
                             <constraint firstItem="rgP-vM-Wzw" firstAttribute="leading" secondItem="VWd-yf-8Ci" secondAttribute="leading" id="nsy-xG-ysw"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="41k-CC-kj2">
+                        <barButtonItem key="rightBarButtonItem" image="compose" id="RAF-dT-bP7">
+                            <connections>
+                                <segue destination="aDW-Cl-WCf" kind="presentation" identifier="NewTweetFromProfileSegue" id="awV-ml-lg5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tweetsTableView" destination="rgP-vM-Wzw" id="GCk-KA-uv2"/>
+                        <segue destination="uha-Fq-yAB" kind="presentation" identifier="ReplyFromProfileScreenSegue" id="47Y-BR-qmd"/>
+                        <segue destination="b6E-Uy-C8w" kind="show" identifier="TweetPageFromProfileSegue" id="iU2-wf-BdL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXa-wB-7u1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3088.8000000000002" y="-291.00449775112446"/>
+            <point key="canvasLocation" x="3340" y="-91"/>
         </scene>
         <!--Reply View Controller-->
         <scene sceneID="XTd-sP-wxm">
@@ -365,7 +374,7 @@
             <objects>
                 <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="u67-PT-ojy" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="oSr-eF-Og9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="oSr-eF-Og9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.33333333329999998" green="0.67450980390000004" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -385,7 +394,7 @@
             <objects>
                 <navigationController storyboardIdentifier="newTweetNavController" automaticallyAdjustsScrollViewInsets="NO" id="aDW-Cl-WCf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="sAz-qy-QqI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="sAz-qy-QqI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.33333333329999998" green="0.67450980390000004" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -404,7 +413,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uha-Fq-yAB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Aud-kF-Hd2">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Aud-kF-Hd2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.33333333329999998" green="0.67450980390000004" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -426,7 +435,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="e4x-aC-CnO"/>
-        <segue reference="MBd-q7-w6V"/>
+        <segue reference="awV-ml-lg5"/>
+        <segue reference="iU2-wf-BdL"/>
+        <segue reference="47Y-BR-qmd"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
