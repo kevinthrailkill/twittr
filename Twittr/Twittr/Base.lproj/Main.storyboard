@@ -57,38 +57,6 @@
             </objects>
             <point key="canvasLocation" x="-3378" y="-634"/>
         </scene>
-        <!--Profile-->
-        <scene sceneID="jaS-tg-Kx6">
-            <objects>
-                <tableViewController id="5v7-za-0gy" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yPr-3l-f0S">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="iNE-Al-O9W">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iNE-Al-O9W" id="uqQ-ax-tBp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="5v7-za-0gy" id="nkl-Lt-F3n"/>
-                            <outlet property="delegate" destination="5v7-za-0gy" id="7na-M4-SUg"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Profile" id="UiX-jJ-Yat">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="omU-Ri-eNJ"/>
-                        <barButtonItem key="rightBarButtonItem" title="Compose" id="oZi-To-6Ls"/>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dfC-jJ-TIF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="687" y="-1295"/>
-        </scene>
         <!--Hamburger View Controller-->
         <scene sceneID="2Zp-Nn-Kkd">
             <objects>
@@ -199,7 +167,7 @@
         <!--Navigation Controller-->
         <scene sceneID="GuZ-5A-qhQ">
             <objects>
-                <navigationController id="dEs-k8-VVv" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TweetsProfileNavController" id="dEs-k8-VVv" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oX7-oH-dtq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -207,12 +175,63 @@
                         <color key="barTintColor" red="0.33333333329999998" green="0.67450980390000004" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="5v7-za-0gy" kind="relationship" relationship="rootViewController" id="UV5-dp-cWG"/>
+                        <segue destination="vJj-FH-xTe" kind="relationship" relationship="rootViewController" id="FeH-9h-7Bv"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSl-ya-Gwm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-266" y="-1295"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="d9J-FV-6Nm">
+            <objects>
+                <viewController id="vJj-FH-xTe" customClass="ProfileViewController" customModule="Twittr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wNx-sw-Q2r"/>
+                        <viewControllerLayoutGuide type="bottom" id="BrT-3Z-JqC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2Eg-ZS-P5A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Lc-aI-anu">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="vJj-FH-xTe" id="uS4-a8-qnV"/>
+                                    <outlet property="delegate" destination="vJj-FH-xTe" id="3Lf-zp-Vh2"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BrT-3Z-JqC" firstAttribute="top" secondItem="6Lc-aI-anu" secondAttribute="bottom" id="ExO-DC-aJ6"/>
+                            <constraint firstItem="6Lc-aI-anu" firstAttribute="top" secondItem="2Eg-ZS-P5A" secondAttribute="top" id="Tgh-C6-dHq"/>
+                            <constraint firstItem="6Lc-aI-anu" firstAttribute="leading" secondItem="2Eg-ZS-P5A" secondAttribute="leading" id="XhH-Yc-yK2"/>
+                            <constraint firstAttribute="trailing" secondItem="6Lc-aI-anu" secondAttribute="trailing" id="aAo-5L-s04"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Vi0-FR-j7C">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="QQA-62-ZJ3">
+                            <connections>
+                                <action selector="onLogoutButton:" destination="vJj-FH-xTe" id="B30-84-5jo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="compose" id="rVP-Z3-JAe">
+                            <connections>
+                                <segue destination="aDW-Cl-WCf" kind="presentation" id="ykv-6G-ASN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tweetsTableView" destination="6Lc-aI-anu" id="ouZ-of-uch"/>
+                        <segue destination="b6E-Uy-C8w" kind="show" identifier="TweetPageSegue" id="UoD-iy-rnZ"/>
+                        <segue destination="uha-Fq-yAB" kind="presentation" identifier="ReplyFromProfileScreenSegue" id="K5Q-7Z-SQ5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ms1-Qe-zSW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="686" y="-1296"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="621-KF-nYF">
@@ -373,7 +392,6 @@
                     <connections>
                         <outlet property="tweetTableView" destination="Zzg-C4-4bn" id="blq-H4-K3Q"/>
                         <segue destination="uha-Fq-yAB" kind="presentation" identifier="ReplySegue" id="MBd-q7-w6V"/>
-                        <segue destination="ZGn-T8-iPm" kind="show" identifier="ShowProfilePageFromDetailSegue" id="YJg-U4-cVM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pyR-Dl-4A3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -419,12 +437,12 @@
                     <connections>
                         <outlet property="tweetsTableView" destination="rgP-vM-Wzw" id="GCk-KA-uv2"/>
                         <segue destination="uha-Fq-yAB" kind="presentation" identifier="ReplyFromProfileScreenSegue" id="47Y-BR-qmd"/>
-                        <segue destination="b6E-Uy-C8w" kind="show" identifier="TweetPageFromProfileSegue" id="iU2-wf-BdL"/>
+                        <segue destination="b6E-Uy-C8w" kind="show" identifier="TweetPageSegue" id="iU2-wf-BdL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXa-wB-7u1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3157.5999999999999" y="-204.64767616191907"/>
+            <point key="canvasLocation" x="3097" y="-209"/>
         </scene>
         <!--Reply View Controller-->
         <scene sceneID="XTd-sP-wxm">
@@ -661,10 +679,10 @@
         <image name="twitter120" width="120" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="47Y-BR-qmd"/>
+        <segue reference="K5Q-7Z-SQ5"/>
+        <segue reference="ykv-6G-ASN"/>
+        <segue reference="UoD-iy-rnZ"/>
         <segue reference="rgr-cL-Hj9"/>
-        <segue reference="iU2-wf-BdL"/>
-        <segue reference="awV-ml-lg5"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
