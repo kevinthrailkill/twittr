@@ -24,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //If user, bypass login screen
         if User.currentUser != nil {
             print("there us a user")
+            
+            TwitterAPIService.sharedInstance.byPassLoginScreen()
+
+            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
             let hamburgerController = storyboard.instantiateViewController(withIdentifier: "HamburgerVC") as! HamburgerViewController
@@ -33,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             menuVC.hamburgerViewController = hamburgerController
             hamburgerController.menuVC = menuVC
             
-            TwitterAPIService.sharedInstance.byPassLoginScreen()
 
             window?.rootViewController = hamburgerController
             

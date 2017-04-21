@@ -166,6 +166,10 @@ class TwitterAPIService {
             params["max_id"] = id as AnyObject
         }
         
+        
+        
+       
+        
         sessionManager.request(getHomeTimelineURL, method: .get, parameters: params, encoding: URLEncoding.queryString)
             .responseArray { (response: DataResponse<[Tweet]>) in
                 switch response.result {
