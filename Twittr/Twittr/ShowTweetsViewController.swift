@@ -28,7 +28,8 @@ class ShowTweetsViewController: UIViewController {
         
         
         
-        
+        let image = UIImage(named: "twittericon.png")
+        self.navigationItem.titleView = UIImageView(image: image)
         
         //load xib file
         var nib = UINib(nibName: "TweetBasicCell", bundle: nil)

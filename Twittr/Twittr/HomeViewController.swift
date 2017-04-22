@@ -19,8 +19,6 @@ class HomeViewController: ShowTweetsViewController {
         super.viewDidLoad()
         
         
-        let image = UIImage(named: "twittericon.png")
-        self.navigationItem.titleView = UIImageView(image: image)
         
         getTweets(refreshing: false, maxID: nil)
 
