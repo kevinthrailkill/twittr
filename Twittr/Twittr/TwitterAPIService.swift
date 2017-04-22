@@ -295,6 +295,13 @@ class TwitterAPIService {
         
     }
     
+    
+    /// Gets the user's timeline via user id
+    ///
+    /// - Parameters:
+    ///   - userID: the id of the user
+    ///   - maxID: The id of the last tweet that we have. Used to get older tweets
+    ///   - completion: if good, return tweets to display
     func getUserTimeline(userID: Int, maxID: String?, completion: @escaping ([Tweet]?, Error?) -> ()) {
         
         var params: [String : AnyObject] = ["count" : 20 as AnyObject, "user_id" : userID as AnyObject]
@@ -302,7 +309,7 @@ class TwitterAPIService {
         if let id = maxID {
             params["max_id"] = id as AnyObject
         }
-        
+
         sessionManager.request(getUserTimelineURL, method: .get, parameters: params, encoding: URLEncoding.queryString)
             .responseArray { (response: DataResponse<[Tweet]>) in
                 switch response.result {
