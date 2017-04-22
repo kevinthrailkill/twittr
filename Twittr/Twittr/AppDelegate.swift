@@ -24,13 +24,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //If user, bypass login screen
         if User.currentUser != nil {
             print("there us a user")
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            let tweetsNavController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
             
             TwitterAPIService.sharedInstance.byPassLoginScreen()
 
-            window?.rootViewController = tweetsNavController
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let hamburgerController = storyboard.instantiateViewController(withIdentifier: "HamburgerVC") as! HamburgerViewController
+            
+            let menuVC = storyboard.instantiateViewController(withIdentifier: "MenuVC") as! MenuViewController
+            
+            menuVC.hamburgerViewController = hamburgerController
+            hamburgerController.menuVC = menuVC
+            
+
+            window?.rootViewController = hamburgerController
             
             
         }else{

@@ -17,6 +17,10 @@ class ProfileViewController: ShowTweetsViewController {
         super.viewDidLoad()
 
         
+        if userID == nil {
+            userID = User._currentUser?.userID
+        }
+        
         
         getUser { (shouldGetTweets) in
             if shouldGetTweets {

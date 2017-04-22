@@ -1,27 +1,20 @@
 //
-//  HomeViewController.swift
+//  MentionsViewController.swift
 //  Twittr
 //
-//  Created by Kevin Thrailkill on 4/5/17.
+//  Created by Kevin Thrailkill on 4/21/17.
 //  Copyright © 2017 kevinthrailkill. All rights reserved.
 //
 
 import UIKit
 
-
-
-
-class HomeViewController: ShowTweetsViewController {
-
-
+class MentionsViewController: ShowTweetsViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         getTweets(refreshing: false, maxID: nil)
-
+        
     }
     
     
@@ -30,7 +23,7 @@ class HomeViewController: ShowTweetsViewController {
     }
     
     override func getTweets(refreshing : Bool, maxID: String?) {
-        twitterAPIService.getHomeTimeline(maxID: maxID) {
+        twitterAPIService.getMentionsTimeline(maxID: maxID) {
             (tweets: [Tweet]?, error: Error?) in
             if let tweets = tweets {
                 print(tweets)
@@ -53,8 +46,8 @@ class HomeViewController: ShowTweetsViewController {
             }
         }
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,31 +55,30 @@ class HomeViewController: ShowTweetsViewController {
     
     override func reply(forCellAt indexPath: IndexPath) {
         indexPathToReload = indexPath
-        self.performSegue(withIdentifier: "ReplyFromHomeScreenSegue", sender: self)
+        self.performSegue(withIdentifier: "ReplyFromMentionsScreenSegue", sender: self)
     }
     
     override func goToUserProfileFor(userID: Int) {
         profileIdToGoTo = userID
         
-        self.performSegue(withIdentifier: "ShowProfileSegue", sender: self)
+        self.performSegue(withIdentifier: "ShowProfileFromMentionsSegue", sender: self)
     }
     
-
+    
     
     
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "NewTweetSegue" {
-            let newTweetNavController = segue.destination
-                as! UINavigationController
-            let newTweetViewController = newTweetNavController.viewControllers[0] as! NewTweetViewController
-            newTweetViewController.delegate = self
-        } else if segue.identifier == "TweetPageSegue" {
+        if segue.identifier == "TweetPageSegue" {
             let tweetController = segue.destination as! TweetViewController
             let tweetCell = tweetsTableView.cellForRow(at: indexPathToReload!) as! TweetBasicCell
             tweetController.tweet = tweetCell.tweet
-        }else if segue.identifier == "ReplyFromHomeScreenSegue" {
+        } else if segue.identifier == "ShowProfileFromMentionsSegue" {
+            let profileViewController = segue.destination as! ProfileViewController
+            profileViewController.userID = profileIdToGoTo
+            profileIdToGoTo = nil
+        } else if segue.identifier == "ReplyFromMentionsScreenSegue" {
             let newTweetNavController = segue.destination
                 as! UINavigationController
             let replyiewController = newTweetNavController.viewControllers[0] as! ReplyViewController
@@ -94,12 +86,6 @@ class HomeViewController: ShowTweetsViewController {
             replyiewController.tweetToReply = tweetCell.tweetForOperations
             replyiewController.delegate = self
             indexPathToReload = nil
-        } else if segue.identifier == "ShowProfileSegue" {
-            let profileViewController = segue.destination as! ProfileViewController
-            profileViewController.userID = profileIdToGoTo
-            profileIdToGoTo = nil
         }
     }
 }
-
-
