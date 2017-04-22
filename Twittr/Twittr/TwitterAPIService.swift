@@ -166,10 +166,6 @@ class TwitterAPIService {
             params["max_id"] = id as AnyObject
         }
         
-        
-        
-       
-        
         sessionManager.request(getHomeTimelineURL, method: .get, parameters: params, encoding: URLEncoding.queryString)
             .responseArray { (response: DataResponse<[Tweet]>) in
                 switch response.result {
@@ -347,6 +343,12 @@ class TwitterAPIService {
         }
     }
     
+    
+    /// Gets the user info for the user page
+    ///
+    /// - Parameters:
+    ///   - userID: the user id
+    ///   - completion: returns a user to be displayed
     func getUserBYID(userID: Int, completion: @escaping (User?, Error?) -> ()) {
         let params: [String : AnyObject] = ["user_id" : userID as AnyObject]
         
